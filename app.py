@@ -1,14 +1,33 @@
 import streamlit as st
 import random
-import pandas as pd
 
-# 1. 페이지 설정 (모바일 최적화)
-st.set_page_config(page_title="수능 단어 도감", layout="centered")
+# 1. 페이지 설정 및 테마 스타일
+st.set_page_config(page_title="수능 영단어 마스터", layout="centered")
 
-# 2. 단어 데이터 (이전에 드린 raw_data를 여기에 대입하세요)
+# CSS를 이용해 카드 UI와 버튼 디자인 개선
+st.markdown("""
+    <style>
+    .word-card {
+        background-color: #f8f9fa;
+        padding: 40px;
+        border-radius: 20px;
+        border-left: 10px solid #4a90e2;
+        text-align: center;
+        margin-bottom: 20px;
+        box-shadow: 2px 2px 10px rgba(0,0,0,0.05);
+    }
+    .stButton>button {
+        width: 100%;
+        border-radius: 10px;
+    }
+    </style>
+    """, unsafe_allow_html=True)
+
+# 2. 데이터 초기화 (세션 상태)
 if 'word_dict' not in st.session_state:
+    # 앞에서 드린 전체 raw_data를 여기에 넣으세요 (일부만 예시로 삽입)
     st.session_state.word_dict = {
-        "abstract": "추상적인, 개요, 추출하다, 요약하다",
+       "abstract": "추상적인, 개요, 추출하다, 요약하다",
         "accommodate": "수용하다, 숙박시키다, 편의를 도모하다, 적응하다",
         "account": "계좌, 설명, 이야기, 간주하다, 차지하다, 근거",
         "acknowledge": "인정하다, 감사를 표하다, 받았음을 알리다",
@@ -3414,63 +3433,88 @@ if 'word_dict' not in st.session_state:
         "youth": "청춘, 젊은이",
         "zeal": "열의, 열성",
         "zone": "지역, 구역",
-        # ... 여기에 나머지 단어들을 추가 ...
     }
     st.session_state.mastered = []
     st.session_state.wrongs = []
     st.session_state.current_word = random.choice(list(st.session_state.word_dict.keys()))
+    st.session_state.feedback = None # 정답/오답 결과 저장
 
-# 3. 주요 로직 함수
+# 3. 정답 확인 함수
 def check_answer():
     user_ans = st.session_state.user_input.strip()
     correct_ans = st.session_state.word_dict[st.session_state.current_word]
     
-    if user_ans and user_ans in correct_ans:
-        st.success(f"정답입니다! 🎉 뜻: {correct_ans}")
+    if user_ans and any(word in correct_ans for word in user_ans.split()):
+        st.session_state.feedback = {"type": "success", "msg": f"**정답입니다!** ✨", "ans": correct_ans}
         if st.session_state.current_word not in st.session_state.mastered:
             st.session_state.mastered.append(st.session_state.current_word)
         if st.session_state.current_word in st.session_state.wrongs:
             st.session_state.wrongs.remove(st.session_state.current_word)
     else:
-        st.error(f"틀렸습니다! 😢 정답은: {correct_ans}")
+        st.session_state.feedback = {"type": "error", "msg": f"**아쉬워요!** 😢", "ans": correct_ans}
         if st.session_state.current_word not in st.session_state.wrongs:
             st.session_state.wrongs.append(st.session_state.current_word)
-            
-    st.session_state.current_word = random.choice(list(st.session_state.word_dict.keys()))
-    st.session_state.user_input = "" # 입력창 초기화
+    
+    # 다음 단어 준비 (메모리상에만 준비)
+    all_keys = list(st.session_state.word_dict.keys())
+    st.session_state.next_word = random.choice(all_keys)
 
-# 4. UI 레이아웃
-st.title("🏆 수능 어휘 정복 도감")
+def go_next():
+    st.session_state.current_word = st.session_state.next_word
+    st.session_state.feedback = None
+    st.session_state.user_input = ""
 
-# 도감 진행도 시각화
-total_count = len(st.session_state.word_dict)
-mastered_count = len(st.session_state.mastered)
-progress = mastered_count / total_count
+# --- UI 레이아웃 ---
 
-st.write(f"현재 수집률: {mastered_count} / {total_count} ({progress*100:.1f}%)")
-st.progress(progress)
-
-# 단어 퀴즈 영역
-st.subheader("이 단어의 뜻은?")
-st.info(f"## **{st.session_state.current_word}**")
-
-st.text_input("뜻을 입력하세요", key="user_input", on_change=check_answer)
-
-# 버튼 메뉴
-col1, col2 = st.columns(2)
-with col1:
-    if st.button("🔄 다음 단어"):
-        st.session_state.current_word = random.choice(list(st.session_state.word_dict.keys()))
-        st.rerun()
-
-with col2:
-    show_dict = st.toggle("📚 도감 열기")
-
-# 5. 도감 및 오답노트 표시
-if show_dict:
+# 사이드바: 도감 및 통계
+with st.sidebar:
+    st.title("📊 나의 학습 통계")
+    total = len(st.session_state.word_dict)
+    done = len(st.session_state.mastered)
+    rate = (done/total) * 100
+    
+    st.metric("수집한 단어", f"{done} / {total}", f"{rate:.1f}%")
+    st.progress(done/total)
+    
     st.divider()
-    tab1, tab2 = st.tabs(["✅ 정복한 단어", "🔥 오답노트"])
-    with tab1:
-        st.write(st.session_state.mastered)
-    with tab2:
-        st.write(st.session_state.wrongs)
+    st.subheader("🔥 오답노트")
+    if st.session_state.wrongs:
+        for w in st.session_state.wrongs:
+            st.caption(f"- {w}: {st.session_state.word_dict[w]}")
+    else:
+        st.write("오답이 없습니다!")
+
+# 메인 화면
+st.title("📖 영단어 마스터")
+
+# 피드백 표시 (정답 유무 및 정답 공개)
+if st.session_state.feedback:
+    if st.session_state.feedback["type"] == "success":
+        st.success(st.session_state.feedback["msg"])
+    else:
+        st.error(st.session_state.feedback["msg"])
+    
+    st.info(f"💡 정답: **{st.session_state.feedback['ans']}**")
+    st.button("다음 단어로 넘어가기 ➡️", on_click=go_next)
+
+else:
+    # 문제 카드 UI
+    st.markdown(f"""
+        <div class="word-card">
+            <p style="font-size: 1.2rem; color: #666;">이 단어의 뜻은?</p>
+            <h1 style="font-size: 3.5rem; margin: 0;">{st.session_state.current_word}</h1>
+        </div>
+    """, unsafe_allow_html=True)
+
+    # 입력창
+    st.text_input("뜻을 입력하고 엔터를 누르세요", key="user_input", on_change=check_answer)
+
+# 도감 (Expander 사용으로 깔끔하게)
+with st.expander("📚 전체 단어 도감 보기"):
+    cols = st.columns(3)
+    for i, word in enumerate(sorted(st.session_state.word_dict.keys())):
+        with cols[i % 3]:
+            if word in st.session_state.mastered:
+                st.write(f"✅ **{word}**")
+            else:
+                st.write(f"🔒 {word}")
