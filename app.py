@@ -5,8 +5,34 @@ import random
 if 'voca_db' not in st.session_state:
     # 중복 제거를 위해 dict로 정의
     raw_data = {
-        "banana": "바나나, 바나나들", 
-        "happy": "해피, 행복", 
+       "apple": "사과, 사과들",
+"orange": "오렌지, 오렌지들",
+"grape": "포도, 포도들",
+"strawberry": "딸기, 딸기들",
+"water": "물, 수분",
+"milk": "우유",
+"bread": "빵, 식빵",
+"egg": "계란, 달걀",
+"rice": "쌀, 밥",
+"sad": "슬픈, 슬픔",
+"angry": "화난, 분노",
+"good": "좋은, 잘된",
+"bad": "나쁜, 잘못된",
+"big": "큰, 커다란",
+"small": "작은, 적은",
+"hot": "뜨거운, 더운",
+"cold": "차가운, 추운",
+"fast": "빠른, 빠르게",
+"slow": "느린, 천천히",
+"book": "책, 도서",
+"pen": "펜, 필기구",
+"desk": "책상",
+"chair": "의자",
+"friend": "친구, 벗",
+"family": "가족, 식구",
+"house": "집, 주택",
+"school": "학교",
+"teacher": "선생님, 교사"
           # 예시
         # ... (이전 대화에서 드린 단어들을 여기에 쭉 붙여넣으세요)
     }
