@@ -1,33 +1,16 @@
 import streamlit as st
 import random
+from datetime import date
 
-# 1. 페이지 설정 및 테마 스타일
+# 1. 페이지 설정
 st.set_page_config(page_title="수능 영단어 마스터", layout="centered")
 
-# CSS를 이용해 카드 UI와 버튼 디자인 개선
-st.markdown("""
-    <style>
-    .word-card {
-        background-color: #f8f9fa;
-        padding: 40px;
-        border-radius: 20px;
-        border-left: 10px solid #4a90e2;
-        text-align: center;
-        margin-bottom: 20px;
-        box-shadow: 2px 2px 10px rgba(0,0,0,0.05);
-    }
-    .stButton>button {
-        width: 100%;
-        border-radius: 10px;
-    }
-    </style>
-    """, unsafe_allow_html=True)
-
-# 2. 데이터 초기화 (세션 상태)
+# 2. 데이터 및 상태 초기화 (Session State)
 if 'word_dict' not in st.session_state:
-    # 앞에서 드린 전체 raw_data를 여기에 넣으세요 (일부만 예시로 삽입)
+    # ---------------------------------------------------------
+    # 여기에 이전에 드린 전체 raw_data 딕셔너리를 넣으세요!
     st.session_state.word_dict = {
-       "abstract": "추상적인, 개요, 추출하다, 요약하다",
+        "abstract": "추상적인, 개요, 추출하다, 요약하다",
         "accommodate": "수용하다, 숙박시키다, 편의를 도모하다, 적응하다",
         "account": "계좌, 설명, 이야기, 간주하다, 차지하다, 근거",
         "acknowledge": "인정하다, 감사를 표하다, 받았음을 알리다",
@@ -3434,87 +3417,131 @@ if 'word_dict' not in st.session_state:
         "zeal": "열의, 열성",
         "zone": "지역, 구역",
     }
-    st.session_state.mastered = []
-    st.session_state.wrongs = []
+    # ---------------------------------------------------------
+    st.session_state.mastered = []     # 해금된 단어
+    st.session_state.wrongs = []       # 오답 리스트
+    st.session_state.mode = "일반"      # 현재 모드 (일반/오답 복습)
+    st.session_state.feedback = None   # 정답/오답 결과 피드백
+    
+    # 챌린지 관련
+    st.session_state.daily_goal = 10   # 하루 목표
+    st.session_state.today_count = 0   # 오늘 새로 맞힌 개수
+    st.session_state.streak = 1        # 연속 학습 일수
+    st.session_state.last_date = str(date.today())
+    
+    # 첫 단어 설정
     st.session_state.current_word = random.choice(list(st.session_state.word_dict.keys()))
-    st.session_state.feedback = None # 정답/오답 결과 저장
 
-# 3. 정답 확인 함수
+# 날짜 변경 체크 (자정이 지나면 오늘 기록 초기화)
+if st.session_state.last_date != str(date.today()):
+    st.session_state.today_count = 0
+    st.session_state.last_date = str(date.today())
+    st.session_state.streak += 1
+
+# 3. 핵심 로직 함수
+def get_next_word():
+    """모드에 따라 다음 단어를 결정하는 함수"""
+    if st.session_state.mode == "오답 복습" and st.session_state.wrongs:
+        return random.choice(st.session_state.wrongs)
+    return random.choice(list(st.session_state.word_dict.keys()))
+
 def check_answer():
+    """사용자가 입력한 답을 검사하는 함수"""
     user_ans = st.session_state.user_input.strip()
     correct_ans = st.session_state.word_dict[st.session_state.current_word]
     
     if user_ans and any(word in correct_ans for word in user_ans.split()):
-        st.session_state.feedback = {"type": "success", "msg": f"**정답입니다!** ✨", "ans": correct_ans}
+        st.session_state.feedback = {"type": "success", "ans": correct_ans}
+        # 처음 맞힌 단어라면 챌린지 카운트와 도감 등록
         if st.session_state.current_word not in st.session_state.mastered:
             st.session_state.mastered.append(st.session_state.current_word)
+            st.session_state.today_count += 1
+        # 오답 리스트에서 제거
         if st.session_state.current_word in st.session_state.wrongs:
             st.session_state.wrongs.remove(st.session_state.current_word)
     else:
-        st.session_state.feedback = {"type": "error", "msg": f"**아쉬워요!** 😢", "ans": correct_ans}
+        st.session_state.feedback = {"type": "error", "ans": correct_ans}
         if st.session_state.current_word not in st.session_state.wrongs:
             st.session_state.wrongs.append(st.session_state.current_word)
     
-    # 다음 단어 준비 (메모리상에만 준비)
-    all_keys = list(st.session_state.word_dict.keys())
-    st.session_state.next_word = random.choice(all_keys)
+    st.session_state.next_word = get_next_word()
 
-def go_next():
-    st.session_state.current_word = st.session_state.next_word
-    st.session_state.feedback = None
-    st.session_state.user_input = ""
-
-# --- UI 레이아웃 ---
-
-# 사이드바: 도감 및 통계
+# 4. 사이드바 (챌린지 및 모드 전환)
 with st.sidebar:
-    st.title("📊 나의 학습 통계")
-    total = len(st.session_state.word_dict)
-    done = len(st.session_state.mastered)
-    rate = (done/total) * 100
+    st.title("🔥 챌린지 센터")
+    st.subheader(f"연속 {st.session_state.streak}일차 돌파!")
     
-    st.metric("수집한 단어", f"{done} / {total}", f"{rate:.1f}%")
-    st.progress(done/total)
+    # 챌린지 게이지
+    st.write(f"오늘의 목표: {st.session_state.today_count} / {st.session_state.daily_goal}")
+    st.progress(min(st.session_state.today_count / st.session_state.daily_goal, 1.0))
     
+    if st.session_state.today_count >= st.session_state.daily_goal:
+        st.success("✅ 목표 달성! 대단해요!")
+        st.balloons()
+        
     st.divider()
-    st.subheader("🔥 오답노트")
-    if st.session_state.wrongs:
-        for w in st.session_state.wrongs:
-            st.caption(f"- {w}: {st.session_state.word_dict[w]}")
-    else:
-        st.write("오답이 없습니다!")
-
-# 메인 화면
-st.title("📖 영단어 마스터")
-
-# 피드백 표시 (정답 유무 및 정답 공개)
-if st.session_state.feedback:
-    if st.session_state.feedback["type"] == "success":
-        st.success(st.session_state.feedback["msg"])
-    else:
-        st.error(st.session_state.feedback["msg"])
     
-    st.info(f"💡 정답: **{st.session_state.feedback['ans']}**")
-    st.button("다음 단어로 넘어가기 ➡️", on_click=go_next)
+    # 모드 전환 버튼
+    st.subheader("🛠️ 모드 설정")
+    if st.session_state.mode == "일반":
+        if st.button("🔴 오답 복습 모드 시작", use_container_width=True):
+            if not st.session_state.wrongs:
+                st.warning("복습할 오답이 없어요!")
+            else:
+                st.session_state.mode = "오답 복습"
+                st.session_state.current_word = get_next_word()
+                st.rerun()
+    else:
+        if st.button("🔵 일반 학습으로 복귀", use_container_width=True):
+            st.session_state.mode = "일반"
+            st.session_state.current_word = get_next_word()
+            st.rerun()
 
+# 5. 메인 UI (퀴즈 화면)
+st.title(f"📖 {st.session_state.mode} 모드")
+
+if st.session_state.feedback:
+    # 정답/오답 결과 화면
+    if st.session_state.feedback["type"] == "success":
+        st.success("**정답입니다!** ✨")
+    else:
+        st.error("**틀렸습니다!** 😢")
+    
+    st.info(f"💡 정답 뜻: **{st.session_state.feedback['ans']}**")
+    if st.button("다음 단어 ➡️"):
+        st.session_state.current_word = st.session_state.next_word
+        st.session_state.feedback = None
+        st.rerun()
 else:
-    # 문제 카드 UI
+    # 단어 카드 및 입력창
+    st.caption(f"목표까지 {max(0, st.session_state.daily_goal - st.session_state.today_count)}개 남음")
+    card_color = "#ff7675" if st.session_state.mode == "오답 복습" else "#4a90e2"
     st.markdown(f"""
-        <div class="word-card">
-            <p style="font-size: 1.2rem; color: #666;">이 단어의 뜻은?</p>
-            <h1 style="font-size: 3.5rem; margin: 0;">{st.session_state.current_word}</h1>
+        <div style="background:#f8f9fa; padding:50px; border-radius:30px; border-left:15px solid {card_color}; text-align:center; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+            <h1 style="font-size: 4rem; margin:0; color:#333;">{st.session_state.current_word}</h1>
         </div>
     """, unsafe_allow_html=True)
+    
+    st.text_input("뜻을 입력하세요", key="user_input", on_change=check_answer)
 
-    # 입력창
-    st.text_input("뜻을 입력하고 엔터를 누르세요", key="user_input", on_change=check_answer)
+# 6. 도감 필터 섹션 (하단 배치)
+st.divider()
+with st.expander("📚 나의 단어 도감 보기"):
+    filter_option = st.radio("필터", ["전체", "해금 ✅", "미해금 🔒"], horizontal=True)
+    all_keys = sorted(st.session_state.word_dict.keys())
+    
+    # 필터 로직
+    if filter_option == "해금 ✅":
+        display = [w for w in all_keys if w in st.session_state.mastered]
+    elif filter_option == "미해금 🔒":
+        display = [w for w in all_keys if w not in st.session_state.mastered]
+    else:
+        display = all_keys
 
-# 도감 (Expander 사용으로 깔끔하게)
-with st.expander("📚 전체 단어 도감 보기"):
     cols = st.columns(3)
-    for i, word in enumerate(sorted(st.session_state.word_dict.keys())):
+    for i, w in enumerate(display):
         with cols[i % 3]:
-            if word in st.session_state.mastered:
-                st.write(f"✅ **{word}**")
+            if w in st.session_state.mastered:
+                st.success(f"**{w}**")
             else:
-                st.write(f"🔒 {word}")
+                st.info(f"🔒 {w}")
