@@ -3487,4 +3487,4 @@ st.progress(min(st.session_state.today_count / st.session_state.daily_goal, 1.0)
 st.caption(f"📍 목표 달성까지 {max(0, st.session_state.daily_goal - st.session_state.today_count)}개 남음")
 
 if st.session_state.feedback:
-    if st.session_state.feedback["type"] == "success
+    if st.session_state.feedback["type"] == "success":
