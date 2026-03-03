@@ -5,7 +5,7 @@ from datetime import date
 # 1. 페이지 설정
 st.set_page_config(page_title="VOCA MASTER", layout="centered", initial_sidebar_state="collapsed")
 
-# 2. 데이터 및 상태 초기화 (최상단)
+# 2. 데이터 및 상태 초기화
 if 'word_dict' not in st.session_state:
     st.session_state.word_dict = {
         "abstract": "추상적인, 개요, 추출하다, 요약하다",
@@ -3424,13 +3424,10 @@ if 'word_dict' not in st.session_state:
     st.session_state.current_word = random.choice(list(st.session_state.word_dict.keys()))
     st.session_state.dark_mode = False
 
-# --- 중요: 에러 방지를 위해 함수를 UI보다 먼저 정의합니다 ---
-
+# 3. 로직 함수 (UI보다 먼저 정의)
 def check_answer():
-    """사용자가 입력한 정답을 확인하는 로직"""
     user_ans = st.session_state.user_input.strip()
     correct_ans = st.session_state.word_dict[st.session_state.current_word]
-    
     if user_ans and any(word in correct_ans for word in user_ans.split()):
         st.session_state.feedback = {"type": "success", "ans": correct_ans}
         if st.session_state.current_word not in st.session_state.mastered:
@@ -3444,17 +3441,13 @@ def check_answer():
             st.session_state.wrongs.append(st.session_state.current_word)
 
 def next_question():
-    """다음 단어를 무작위로 선택하는 로직"""
     if st.session_state.mode == "오답 복습" and st.session_state.wrongs:
         st.session_state.current_word = random.choice(st.session_state.wrongs)
     else:
         st.session_state.current_word = random.choice(list(st.session_state.word_dict.keys()))
     st.session_state.feedback = None
-    st.session_state.user_input = "" # 입력창 초기화
 
-# ---------------------------------------------------------
-
-# 3. 테마 및 CSS 설정
+# 4. 테마 및 CSS 스타일
 if st.session_state.dark_mode:
     bg_color, card_bg, text_color, sub_text = "#121212", "#1e1e1e", "#FFFFFF", "#B0B0B0"
     input_bg, card_shadow = "#2D2D2D", "0 10px 25px rgba(0,0,0,0.5)"
@@ -3476,7 +3469,7 @@ st.markdown(f"""
     </style>
     """, unsafe_allow_html=True)
 
-# 4. 메인 UI
+# 5. 메인 UI (상단)
 col_t, col_btn = st.columns([0.8, 0.2])
 col_t.title("🎓 VOCA MASTER")
 if col_btn.button("☀️" if st.session_state.dark_mode else "🌙"):
@@ -3486,8 +3479,8 @@ if col_btn.button("☀️" if st.session_state.dark_mode else "🌙"):
 st.progress(min(st.session_state.today_count / st.session_state.daily_goal, 1.0))
 st.caption(f"📍 목표 달성까지 {max(0, st.session_state.daily_goal - st.session_state.today_count)}개 남음")
 
+# 6. 중앙 퀴즈 영역
 if st.session_state.feedback:
-    # 3490라인: 이 아래의 st.success 줄이 안쪽으로 들어가야 합니다.
     if st.session_state.feedback["type"] == "success":
         st.success("✅ 정답입니다! 아주 잘하고 있어요!")
     else:
@@ -3496,3 +3489,54 @@ if st.session_state.feedback:
     if st.button("다음 단어로 ➡️", use_container_width=True):
         next_question()
         st.rerun()
+else:
+    card_color = "#FF4B4B" if st.session_state.mode == "오답 복습" else "#4A90E2"
+    st.markdown(f"""
+        <div class="word-card" style="border-bottom-color: {card_color};">
+            <div class="word-text">{st.session_state.current_word}</div>
+        </div>
+    """, unsafe_allow_html=True)
+    st.text_input("뜻을 입력하고 엔터를 누르세요", key="user_input", on_change=check_answer)
+
+# ---------------------------------------------------------
+# 7. 하단 메뉴 (탭) - 여기가 누락되었던 부분입니다!
+# ---------------------------------------------------------
+st.divider()
+tab1, tab2 = st.tabs(["🎮 학습 모드", "📚 단어 도감"])
+
+with tab1:
+    st.subheader("모드 선택")
+    c1, c2 = st.columns(2)
+    if c1.button("일반 모드", use_container_width=True):
+        st.session_state.mode = "일반"
+        next_question()
+        st.rerun()
+    if c2.button("오답 집중 모드", use_container_width=True):
+        if st.session_state.wrongs:
+            st.session_state.mode = "오답 복습"
+            next_question()
+            st.rerun()
+        else:
+            st.toast("오답이 없어 일반 모드를 유지합니다! 🎉")
+    st.info(f"현재 모드: **{st.session_state.mode}**")
+
+with tab2:
+    st.subheader("내 단어장")
+    filter_opt = st.radio("보기 필터", ["전체", "해금 ✅", "미해금 🔒"], horizontal=True)
+    
+    all_keys = sorted(st.session_state.word_dict.keys())
+    if filter_opt == "해금 ✅":
+        display_words = [w for w in all_keys if w in st.session_state.mastered]
+    elif filter_opt == "미해금 🔒":
+        display_words = [w for w in all_keys if w not in st.session_state.mastered]
+    else:
+        display_words = all_keys
+
+    # 도감을 2열로 출력
+    grid = st.columns(2)
+    for i, w in enumerate(display_words):
+        with grid[i % 2]:
+            if w in st.session_state.mastered:
+                st.write(f"✅ **{w}**")
+            else:
+                st.write(f"🔒 {w}")
