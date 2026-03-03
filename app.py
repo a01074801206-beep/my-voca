@@ -3487,4 +3487,12 @@ st.progress(min(st.session_state.today_count / st.session_state.daily_goal, 1.0)
 st.caption(f"📍 목표 달성까지 {max(0, st.session_state.daily_goal - st.session_state.today_count)}개 남음")
 
 if st.session_state.feedback:
+    # 3490라인: 이 아래의 st.success 줄이 안쪽으로 들어가야 합니다.
     if st.session_state.feedback["type"] == "success":
+        st.success("✅ 정답입니다! 아주 잘하고 있어요!")
+    else:
+        st.error(f"😢 오답입니다! (정답: {st.session_state.feedback['ans']})")
+    
+    if st.button("다음 단어로 ➡️", use_container_width=True):
+        next_question()
+        st.rerun()
