@@ -3446,8 +3446,7 @@ def next_question():
     else:
         st.session_state.current_word = random.choice(list(st.session_state.word_dict.keys()))
     st.session_state.feedback = None
-
-# 4. 테마 및 CSS 스타일
+# 3. 테마 및 CSS 설정 (여기서부터 아래 st.markdown 끝까지 교체)
 if st.session_state.dark_mode:
     bg_color, card_bg, text_color, sub_text = "#121212", "#1e1e1e", "#FFFFFF", "#B0B0B0"
     input_bg, card_shadow = "#2D2D2D", "0 10px 25px rgba(0,0,0,0.5)"
@@ -3457,17 +3456,45 @@ else:
 
 st.markdown(f"""
     <style>
+    /* 1. 전체 배경 및 기본 글자색 */
     .stApp {{ background-color: {bg_color}; color: {text_color} !important; }}
     .stApp p, .stApp span, .stApp label, .stApp div {{ color: {text_color} !important; }}
+
+    /* 2. 버튼 스타일 강제 고정 (글자 안보임 문제 해결) */
+    div.stButton > button {{
+        background-color: #4A90E2 !important; /* 버튼 배경 파란색 */
+        color: white !important;              /* 버튼 글자 흰색 고정 */
+        border-radius: 12px !important;
+        border: none !important;
+        height: 3.5em !important;
+        font-weight: bold !important;
+        width: 100% !important;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+    }}
+
+    /* 3. 단어 카드 스타일 */
     .word-card {{
         background-color: {card_bg}; padding: 40px 20px; border-radius: 20px;
         text-align: center; box-shadow: {card_shadow}; margin: 20px 0;
         border-bottom: 8px solid #4A90E2;
     }}
     .word-text {{ font-size: clamp(2.2rem, 10vw, 4rem); font-weight: 900; color: {text_color} !important; }}
-    .stTextInput input {{ background-color: {input_bg} !important; color: {text_color} !important; border-radius: 10px !important; border: 1px solid #4A90E2 !important; }}
+
+    /* 4. 입력창 스타일 */
+    .stTextInput input {{ 
+        background-color: {input_bg} !important; 
+        color: {text_color} !important; 
+        border-radius: 10px !important; 
+        border: 1px solid #4A90E2 !important; 
+    }}
+
+    /* 5. 탭(Tab) 메뉴 글자색 고정 */
+    .stTabs [data-baseweb="tab"] p {{
+        color: {text_color} !important;
+    }}
     </style>
     """, unsafe_allow_html=True)
+
 
 # 5. 메인 UI (상단)
 col_t, col_btn = st.columns([0.8, 0.2])
