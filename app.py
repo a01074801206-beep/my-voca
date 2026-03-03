@@ -1,14 +1,12 @@
 import streamlit as st
 import random
+from datetime import date
 
 # 1. 페이지 설정
-st.set_page_config(page_title="VOCA MASTER", layout="centered")
+st.set_page_config(page_title="VOCA MASTER", layout="centered", initial_sidebar_state="collapsed")
 
-if 'dark_mode' not in st.session_state:
-    st.session_state.dark_mode = False
+# 2. 데이터 및 상태 초기화 (최상단)
 if 'word_dict' not in st.session_state:
-    # ---------------------------------------------------------
-    # ※ 중요: 여기에 본인의 2,500단어 데이터를 넣으세요!
     st.session_state.word_dict = {
         "abstract": "추상적인, 개요, 추출하다, 요약하다",
         "accommodate": "수용하다, 숙박시키다, 편의를 도모하다, 적응하다",
@@ -3417,7 +3415,6 @@ if 'word_dict' not in st.session_state:
         "zeal": "열의, 열성",
         "zone": "지역, 구역",
     }
-    # ---------------------------------------------------------
     st.session_state.mastered = []
     st.session_state.wrongs = []
     st.session_state.mode = "일반"
@@ -3425,138 +3422,69 @@ if 'word_dict' not in st.session_state:
     st.session_state.today_count = 0
     st.session_state.daily_goal = 10
     st.session_state.current_word = random.choice(list(st.session_state.word_dict.keys()))
-
-# 2. 다크모드 상태 초기화
-if 'dark_mode' not in st.session_state:
     st.session_state.dark_mode = False
 
-# 3. 테마별 색상 변수 설정
-if st.session_state.dark_mode:
-    bg_color = "#121212"
-    card_bg = "#1e1e1e"
-    text_color = "#FFFFFF"  # 핵심: 순백색으로 변경
-    sub_text = "#B0B0B0"
-    input_bg = "#2D2D2D"
-    card_shadow = "0 10px 25px rgba(0,0,0,0.5)"
-else:
-    bg_color = "#F0F2F5"
-    card_bg = "#FFFFFF"
-    text_color = "#1A1A1A"
-    sub_text = "#666666"
-    input_bg = "#FFFFFF"
-    card_shadow = "0 10px 25px rgba(0,0,0,0.1)"
+# --- 중요: 에러 방지를 위해 함수를 UI보다 먼저 정의합니다 ---
 
-# 4. 강제 스타일 적용 (글자색 대폭 보강)
+def check_answer():
+    """사용자가 입력한 정답을 확인하는 로직"""
+    user_ans = st.session_state.user_input.strip()
+    correct_ans = st.session_state.word_dict[st.session_state.current_word]
+    
+    if user_ans and any(word in correct_ans for word in user_ans.split()):
+        st.session_state.feedback = {"type": "success", "ans": correct_ans}
+        if st.session_state.current_word not in st.session_state.mastered:
+            st.session_state.mastered.append(st.session_state.current_word)
+            st.session_state.today_count += 1
+        if st.session_state.current_word in st.session_state.wrongs:
+            st.session_state.wrongs.remove(st.session_state.current_word)
+    else:
+        st.session_state.feedback = {"type": "error", "ans": correct_ans}
+        if st.session_state.current_word not in st.session_state.wrongs:
+            st.session_state.wrongs.append(st.session_state.current_word)
+
+def next_question():
+    """다음 단어를 무작위로 선택하는 로직"""
+    if st.session_state.mode == "오답 복습" and st.session_state.wrongs:
+        st.session_state.current_word = random.choice(st.session_state.wrongs)
+    else:
+        st.session_state.current_word = random.choice(list(st.session_state.word_dict.keys()))
+    st.session_state.feedback = None
+    st.session_state.user_input = "" # 입력창 초기화
+
+# ---------------------------------------------------------
+
+# 3. 테마 및 CSS 설정
+if st.session_state.dark_mode:
+    bg_color, card_bg, text_color, sub_text = "#121212", "#1e1e1e", "#FFFFFF", "#B0B0B0"
+    input_bg, card_shadow = "#2D2D2D", "0 10px 25px rgba(0,0,0,0.5)"
+else:
+    bg_color, card_bg, text_color, sub_text = "#F0F2F5", "#FFFFFF", "#1A1A1A", "#666666"
+    input_bg, card_shadow = "#FFFFFF", "0 10px 25px rgba(0,0,0,0.1)"
+
 st.markdown(f"""
     <style>
-    /* 전체 배경 및 기본 글자색 */
-    .stApp {{ 
-        background-color: {bg_color}; 
-        color: {text_color} !important; 
-    }}
-    
-    /* 모든 Streamlit 기본 텍스트(라벨, 캡션 등) 강제 적용 */
-    .stApp p, .stApp span, .stApp label, .stApp div {{
-        color: {text_color} !important;
-    }}
-
-    /* 단어 카드 내부 */
+    .stApp {{ background-color: {bg_color}; color: {text_color} !important; }}
+    .stApp p, .stApp span, .stApp label, .stApp div {{ color: {text_color} !important; }}
     .word-card {{
-        background-color: {card_bg};
-        padding: 40px 20px;
-        border-radius: 20px;
-        text-align: center;
-        box-shadow: {card_shadow};
-        margin: 20px 0;
+        background-color: {card_bg}; padding: 40px 20px; border-radius: 20px;
+        text-align: center; box-shadow: {card_shadow}; margin: 20px 0;
         border-bottom: 8px solid #4A90E2;
     }}
-    
-    .word-text {{
-        font-size: clamp(2.2rem, 10vw, 4rem);
-        font-weight: 900;
-        color: {text_color} !important;
-    }}
-
-    /* 입력창 내부 글자색 및 배경 */
-    .stTextInput input {{
-        background-color: {input_bg} !important;
-        color: {text_color} !important;
-        border: 1px solid #4A90E2 !important;
-    }}
-    
-    /* 하단 탭 글자색 */
-    .stTabs [data-baseweb="tab"] p {{
-        color: {text_color} !important;
-    }}
-
-    /* 라디오 버튼(도감 필터) 글자색 */
-    .stMarkdown div[data-testid="stMarkdownContainer"] p {{
-        color: {text_color} !important;
-    }}
-
-    /* 미해금 단어 캡션 색상 조절 */
-    .stCaption {{
-        color: {sub_text} !important;
-    }}
+    .word-text {{ font-size: clamp(2.2rem, 10vw, 4rem); font-weight: 900; color: {text_color} !important; }}
+    .stTextInput input {{ background-color: {input_bg} !important; color: {text_color} !important; border-radius: 10px !important; border: 1px solid #4A90E2 !important; }}
     </style>
     """, unsafe_allow_html=True)
 
-# 4. 메인 UI (상단 헤더)
+# 4. 메인 UI
 col_t, col_btn = st.columns([0.8, 0.2])
 col_t.title("🎓 VOCA MASTER")
 if col_btn.button("☀️" if st.session_state.dark_mode else "🌙"):
     st.session_state.dark_mode = not st.session_state.dark_mode
     st.rerun()
 
-# 챌린지 게이지
 st.progress(min(st.session_state.today_count / st.session_state.daily_goal, 1.0))
-st.caption(f"📍 오늘 목표 달성까지 {max(0, st.session_state.daily_goal - st.session_state.today_count)}개 남음")
+st.caption(f"📍 목표 달성까지 {max(0, st.session_state.daily_goal - st.session_state.today_count)}개 남음")
 
-# 5. 중앙 퀴즈 영역
 if st.session_state.feedback:
-    if st.session_state.feedback["type"] == "success":
-        st.success("✅ 정답입니다! 아주 잘하고 있어요!")
-    else:
-        st.error(f"😢 오답입니다! (정답: {st.session_state.feedback['ans']})")
-    
-    if st.button("다음 단어로 ➡️", use_container_width=True):
-        next_question()
-        st.rerun()
-else:
-    card_color = "#FF4B4B" if st.session_state.mode == "오답 복습" else "#4A90E2"
-    st.markdown(f"""
-        <div class="word-card" style="border-bottom-color: {card_color};">
-            <div class="word-text">{st.session_state.current_word}</div>
-        </div>
-    """, unsafe_allow_html=True)
-    st.text_input("뜻을 입력하고 엔터를 누르세요", key="user_input", on_change=check_answer)
-
-# 6. 하단 메뉴 (탭)
-st.divider()
-tab1, tab2 = st.tabs(["🎮 학습 모드", "📚 단어 도감"])
-
-with tab1:
-    c1, c2 = st.columns(2)
-    if c1.button("일반 모드", use_container_width=True):
-        st.session_state.mode = "일반"
-        next_question()
-        st.rerun()
-    if c2.button("오답 집중 모드", use_container_width=True):
-        if st.session_state.wrongs:
-            st.session_state.mode = "오답 복습"
-            next_question()
-            st.rerun()
-        else: st.toast("오답이 없어 일반 모드를 유지합니다! 🎉")
-
-with tab2:
-    filter_opt = st.radio("보기", ["전체", "해금 ✅", "미해금 🔒"], horizontal=True)
-    words = sorted(st.session_state.word_dict.keys())
-    display = [w for w in words if (filter_opt=="전체") or (filter_opt=="해금 ✅" and w in st.session_state.mastered) or (filter_opt=="미해금 🔒" and w not in st.session_state.mastered)]
-    
-    grid = st.columns(2)
-    for i, w in enumerate(display):
-        with grid[i % 2]:
-            if w in st.session_state.mastered:
-                st.caption(f"✅ **{w}**")
-            else:
-                st.caption(f"🔒 {w}")
+    if st.session_state.feedback["type"] == "success
