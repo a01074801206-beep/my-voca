@@ -1,9 +1,8 @@
 import streamlit as st
 import random
-from datetime import date
 
-# 1. 페이지 설정 및 초기화
-st.set_page_config(page_title="VOCA MASTER", layout="centered", initial_sidebar_state="collapsed")
+# 1. 페이지 설정
+st.set_page_config(page_title="VOCA MASTER", layout="centered")
 
 if 'dark_mode' not in st.session_state:
     st.session_state.dark_mode = False
@@ -3427,60 +3426,80 @@ if 'word_dict' not in st.session_state:
     st.session_state.daily_goal = 10
     st.session_state.current_word = random.choice(list(st.session_state.word_dict.keys()))
 
-# 2. 테마별 디자인 설정 (다크모드 대응)
-if st.session_state.dark_mode:
-    bg_color, card_bg, text_color = "#121212", "#1e1e1e", "#E0E0E0"
-    input_bg, card_shadow = "#2d2d2d", "0 10px 25px rgba(0,0,0,0.5)"
-else:
-    bg_color, card_bg, text_color = "#F0F2F5", "#FFFFFF", "#1A1A1A"
-    input_bg, card_shadow = "#FFFFFF", "0 10px 25px rgba(0,0,0,0.1)"
+# 2. 다크모드 상태 초기화
+if 'dark_mode' not in st.session_state:
+    st.session_state.dark_mode = False
 
+# 3. 테마별 색상 변수 설정
+if st.session_state.dark_mode:
+    bg_color = "#121212"
+    card_bg = "#1e1e1e"
+    text_color = "#FFFFFF"  # 핵심: 순백색으로 변경
+    sub_text = "#B0B0B0"
+    input_bg = "#2D2D2D"
+    card_shadow = "0 10px 25px rgba(0,0,0,0.5)"
+else:
+    bg_color = "#F0F2F5"
+    card_bg = "#FFFFFF"
+    text_color = "#1A1A1A"
+    sub_text = "#666666"
+    input_bg = "#FFFFFF"
+    card_shadow = "0 10px 25px rgba(0,0,0,0.1)"
+
+# 4. 강제 스타일 적용 (글자색 대폭 보강)
 st.markdown(f"""
     <style>
-    .stApp {{ background-color: {bg_color}; color: {text_color}; }}
+    /* 전체 배경 및 기본 글자색 */
+    .stApp {{ 
+        background-color: {bg_color}; 
+        color: {text_color} !important; 
+    }}
+    
+    /* 모든 Streamlit 기본 텍스트(라벨, 캡션 등) 강제 적용 */
+    .stApp p, .stApp span, .stApp label, .stApp div {{
+        color: {text_color} !important;
+    }}
+
+    /* 단어 카드 내부 */
     .word-card {{
-        background-color: {card_bg}; padding: 40px 20px; border-radius: 20px;
-        text-align: center; box-shadow: {card_shadow}; margin: 20px 0;
+        background-color: {card_bg};
+        padding: 40px 20px;
+        border-radius: 20px;
+        text-align: center;
+        box-shadow: {card_shadow};
+        margin: 20px 0;
         border-bottom: 8px solid #4A90E2;
     }}
+    
     .word-text {{
-        font-size: clamp(2.2rem, 10vw, 4rem); font-weight: 900;
-        color: {text_color}; word-break: break-all;
+        font-size: clamp(2.2rem, 10vw, 4rem);
+        font-weight: 900;
+        color: {text_color} !important;
     }}
+
+    /* 입력창 내부 글자색 및 배경 */
     .stTextInput input {{
-        background-color: {input_bg} !important; color: {text_color} !important;
-        border-radius: 10px !important; height: 50px !important;
+        background-color: {input_bg} !important;
+        color: {text_color} !important;
         border: 1px solid #4A90E2 !important;
     }}
-    div.stButton > button {{
-        width: 100%; border-radius: 12px; height: 3.5em;
-        font-weight: bold; background-color: #4A90E2; color: white; border: none;
+    
+    /* 하단 탭 글자색 */
+    .stTabs [data-baseweb="tab"] p {{
+        color: {text_color} !important;
+    }}
+
+    /* 라디오 버튼(도감 필터) 글자색 */
+    .stMarkdown div[data-testid="stMarkdownContainer"] p {{
+        color: {text_color} !important;
+    }}
+
+    /* 미해금 단어 캡션 색상 조절 */
+    .stCaption {{
+        color: {sub_text} !important;
     }}
     </style>
     """, unsafe_allow_html=True)
-
-# 3. 핵심 로직 함수
-def check_answer():
-    user_ans = st.session_state.user_input.strip()
-    correct_ans = st.session_state.word_dict[st.session_state.current_word]
-    if user_ans and any(word in correct_ans for word in user_ans.split()):
-        st.session_state.feedback = {"type": "success", "ans": correct_ans}
-        if st.session_state.current_word not in st.session_state.mastered:
-            st.session_state.mastered.append(st.session_state.current_word)
-            st.session_state.today_count += 1
-        if st.session_state.current_word in st.session_state.wrongs:
-            st.session_state.wrongs.remove(st.session_state.current_word)
-    else:
-        st.session_state.feedback = {"type": "error", "ans": correct_ans}
-        if st.session_state.current_word not in st.session_state.wrongs:
-            st.session_state.wrongs.append(st.session_state.current_word)
-
-def next_question():
-    if st.session_state.mode == "오답 복습" and st.session_state.wrongs:
-        st.session_state.current_word = random.choice(st.session_state.wrongs)
-    else:
-        st.session_state.current_word = random.choice(list(st.session_state.word_dict.keys()))
-    st.session_state.feedback = None
 
 # 4. 메인 UI (상단 헤더)
 col_t, col_btn = st.columns([0.8, 0.2])
