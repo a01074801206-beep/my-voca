@@ -1,14 +1,14 @@
 import streamlit as st
 import random
-from datetime import date
 
 # 1. 페이지 설정
 st.set_page_config(page_title="VOCA MASTER", layout="centered", initial_sidebar_state="collapsed")
 
-# 2. 데이터 및 상태 초기화
+# 2. 데이터 및 세션 상태 초기화
 if 'word_dict' not in st.session_state:
+    # ※ 여기에 본인의 2,500단어 데이터를 넣으세요.
     st.session_state.word_dict = {
-        "abstract": "추상적인, 개요, 추출하다, 요약하다",
+       "abstract": "추상적인, 개요, 추출하다, 요약하다",
         "accommodate": "수용하다, 숙박시키다, 편의를 도모하다, 적응하다",
         "account": "계좌, 설명, 이야기, 간주하다, 차지하다, 근거",
         "acknowledge": "인정하다, 감사를 표하다, 받았음을 알리다",
@@ -3415,8 +3415,12 @@ if 'word_dict' not in st.session_state:
         "zeal": "열의, 열성",
         "zone": "지역, 구역",
     }
-    st.session_state.mastered = []
-    st.session_state.wrongs = []
+    st.session_state.mastered = [] # 해금된 단어 리스트
+    st.session_state.wrongs = []    # 오답 리스트
+    st.session_state.word_counts = {word: 0 for word in st.session_state.word_dict.keys()} # 누적 정답수
+    st.session_state.word_last_seen = {word: 0 for word in st.session_state.word_dict.keys()} # 마지막 등장 시점
+    st.session_state.recent_words = [] # 잔상 방지용 (최근 15단어)
+    st.session_state.total_steps = 0   # 전체 학습 진행 횟수
     st.session_state.mode = "일반"
     st.session_state.feedback = None
     st.session_state.today_count = 0
@@ -3424,12 +3428,14 @@ if 'word_dict' not in st.session_state:
     st.session_state.current_word = random.choice(list(st.session_state.word_dict.keys()))
     st.session_state.dark_mode = False
 
-# 3. 로직 함수 (UI보다 먼저 정의)
+# 3. 핵심 로직 함수
 def check_answer():
     user_ans = st.session_state.user_input.strip()
     correct_ans = st.session_state.word_dict[st.session_state.current_word]
+    
     if user_ans and any(word in correct_ans for word in user_ans.split()):
         st.session_state.feedback = {"type": "success", "ans": correct_ans}
+        st.session_state.word_counts[st.session_state.current_word] += 1
         if st.session_state.current_word not in st.session_state.mastered:
             st.session_state.mastered.append(st.session_state.current_word)
             st.session_state.today_count += 1
@@ -3441,62 +3447,74 @@ def check_answer():
             st.session_state.wrongs.append(st.session_state.current_word)
 
 def next_question():
-    if st.session_state.mode == "오답 복습" and st.session_state.wrongs:
-        st.session_state.current_word = random.choice(st.session_state.wrongs)
-    else:
-        st.session_state.current_word = random.choice(list(st.session_state.word_dict.keys()))
+    st.session_state.total_steps += 1
+    all_words = list(st.session_state.word_dict.keys())
+    weights = []
+    
+    for word in all_words:
+        # 1) 잔상 방지: 최근 15개 단어는 제외
+        if word in st.session_state.recent_words:
+            weights.append(0)
+            continue
+        
+        # 2) 기본 가중치
+        score = 10
+        
+        # 3) 정답 횟수 감점: 많이 맞출수록 안 나옴 (최소 1점)
+        c_count = st.session_state.word_counts.get(word, 0)
+        score = max(1, score - (c_count * 2))
+        
+        # 4) 오답 가중치: 틀린 단어 우선 출제
+        if word in st.session_state.wrongs:
+            score += 15
+            
+        # 5) 망각 방지 보너스: 안 본 지 오래될수록 가중치 상승
+        gap = st.session_state.total_steps - st.session_state.word_last_seen.get(word, 0)
+        score += (gap // 20) # 20문제 지날 때마다 점수 1점씩 추가
+        
+        weights.append(score)
+
+    # 단어 추첨
+    selected_word = random.choices(all_words, weights=weights, k=1)[0]
+    
+    # 상태 업데이트
+    st.session_state.word_last_seen[selected_word] = st.session_state.total_steps
+    st.session_state.recent_words.append(selected_word)
+    if len(st.session_state.recent_words) > 15:
+        st.session_state.recent_words.pop(0)
+        
+    st.session_state.current_word = selected_word
     st.session_state.feedback = None
-# 3. 테마 및 CSS 설정 (여기서부터 아래 st.markdown 끝까지 교체)
+
+# 4. 테마 및 CSS 스타일 (다크모드 & 버튼 가독성)
 if st.session_state.dark_mode:
-    bg_color, card_bg, text_color, sub_text = "#121212", "#1e1e1e", "#FFFFFF", "#B0B0B0"
+    bg_color, card_bg, text_color = "#121212", "#1e1e1e", "#FFFFFF"
     input_bg, card_shadow = "#2D2D2D", "0 10px 25px rgba(0,0,0,0.5)"
 else:
-    bg_color, card_bg, text_color, sub_text = "#F0F2F5", "#FFFFFF", "#1A1A1A", "#666666"
+    bg_color, card_bg, text_color = "#F0F2F5", "#FFFFFF", "#1A1A1A"
     input_bg, card_shadow = "#FFFFFF", "0 10px 25px rgba(0,0,0,0.1)"
 
 st.markdown(f"""
     <style>
-    /* 1. 전체 배경 및 기본 글자색 */
     .stApp {{ background-color: {bg_color}; color: {text_color} !important; }}
     .stApp p, .stApp span, .stApp label, .stApp div {{ color: {text_color} !important; }}
-
-    /* 2. 버튼 스타일 강제 고정 (글자 안보임 문제 해결) */
     div.stButton > button {{
-        background-color: #4A90E2 !important; /* 버튼 배경 파란색 */
-        color: white !important;              /* 버튼 글자 흰색 고정 */
-        border-radius: 12px !important;
-        border: none !important;
-        height: 3.5em !important;
-        font-weight: bold !important;
-        width: 100% !important;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+        background-color: #4A90E2 !important; color: white !important;
+        border-radius: 12px !important; border: none !important;
+        height: 3.5em !important; font-weight: bold !important; width: 100% !important;
     }}
-
-    /* 3. 단어 카드 스타일 */
     .word-card {{
         background-color: {card_bg}; padding: 40px 20px; border-radius: 20px;
         text-align: center; box-shadow: {card_shadow}; margin: 20px 0;
         border-bottom: 8px solid #4A90E2;
     }}
     .word-text {{ font-size: clamp(2.2rem, 10vw, 4rem); font-weight: 900; color: {text_color} !important; }}
-
-    /* 4. 입력창 스타일 */
-    .stTextInput input {{ 
-        background-color: {input_bg} !important; 
-        color: {text_color} !important; 
-        border-radius: 10px !important; 
-        border: 1px solid #4A90E2 !important; 
-    }}
-
-    /* 5. 탭(Tab) 메뉴 글자색 고정 */
-    .stTabs [data-baseweb="tab"] p {{
-        color: {text_color} !important;
-    }}
+    .stTextInput input {{ background-color: {input_bg} !important; color: {text_color} !important; border-radius: 10px !important; border: 1px solid #4A90E2 !important; }}
+    .stTabs [data-baseweb="tab"] p {{ color: {text_color} !important; }}
     </style>
     """, unsafe_allow_html=True)
 
-
-# 5. 메인 UI (상단)
+# 5. 메인 UI
 col_t, col_btn = st.columns([0.8, 0.2])
 col_t.title("🎓 VOCA MASTER")
 if col_btn.button("☀️" if st.session_state.dark_mode else "🌙"):
@@ -3504,66 +3522,43 @@ if col_btn.button("☀️" if st.session_state.dark_mode else "🌙"):
     st.rerun()
 
 st.progress(min(st.session_state.today_count / st.session_state.daily_goal, 1.0))
-st.caption(f"📍 목표 달성까지 {max(0, st.session_state.daily_goal - st.session_state.today_count)}개 남음")
+st.caption(f"📍 목표까지 {max(0, st.session_state.daily_goal - st.session_state.today_count)}개 남음 | 누적 학습: {st.session_state.total_steps}회")
 
-# 6. 중앙 퀴즈 영역
 if st.session_state.feedback:
     if st.session_state.feedback["type"] == "success":
-        st.success("✅ 정답입니다! 아주 잘하고 있어요!")
+        st.success("✅ 정답입니다!")
     else:
-        st.error(f"😢 오답입니다! (정답: {st.session_state.feedback['ans']})")
-    
+        st.error(f"😢 오답! (정답: {st.session_state.feedback['ans']})")
     if st.button("다음 단어로 ➡️", use_container_width=True):
         next_question()
         st.rerun()
 else:
-    card_color = "#FF4B4B" if st.session_state.mode == "오답 복습" else "#4A90E2"
-    st.markdown(f"""
-        <div class="word-card" style="border-bottom-color: {card_color};">
-            <div class="word-text">{st.session_state.current_word}</div>
-        </div>
-    """, unsafe_allow_html=True)
+    card_edge = "#FF4B4B" if st.session_state.mode == "오답 복습" else "#4A90E2"
+    st.markdown(f'<div class="word-card" style="border-bottom-color: {card_edge};"><div class="word-text">{st.session_state.current_word}</div></div>', unsafe_allow_html=True)
     st.text_input("뜻을 입력하고 엔터를 누르세요", key="user_input", on_change=check_answer)
 
-# ---------------------------------------------------------
-# 7. 하단 메뉴 (탭) - 여기가 누락되었던 부분입니다!
-# ---------------------------------------------------------
+# 6. 하단 메뉴
 st.divider()
-tab1, tab2 = st.tabs(["🎮 학습 모드", "📚 단어 도감"])
-
+tab1, tab2 = st.tabs(["🎮 모드", "📚 도감"])
 with tab1:
-    st.subheader("모드 선택")
     c1, c2 = st.columns(2)
-    if c1.button("일반 모드", use_container_width=True):
+    if c1.button("일반 모드"):
         st.session_state.mode = "일반"
-        next_question()
-        st.rerun()
-    if c2.button("오답 집중 모드", use_container_width=True):
+        next_question(); st.rerun()
+    if c2.button("오답 집중 모드"):
         if st.session_state.wrongs:
             st.session_state.mode = "오답 복습"
-            next_question()
-            st.rerun()
-        else:
-            st.toast("오답이 없어 일반 모드를 유지합니다! 🎉")
-    st.info(f"현재 모드: **{st.session_state.mode}**")
+            next_question(); st.rerun()
+        else: st.toast("오답이 없어요! ✨")
 
 with tab2:
-    st.subheader("내 단어장")
-    filter_opt = st.radio("보기 필터", ["전체", "해금 ✅", "미해금 🔒"], horizontal=True)
-    
-    all_keys = sorted(st.session_state.word_dict.keys())
-    if filter_opt == "해금 ✅":
-        display_words = [w for w in all_keys if w in st.session_state.mastered]
-    elif filter_opt == "미해금 🔒":
-        display_words = [w for w in all_keys if w not in st.session_state.mastered]
-    else:
-        display_words = all_keys
-
-    # 도감을 2열로 출력
+    f_opt = st.radio("필터", ["전체", "해금 ✅", "미해금 🔒"], horizontal=True)
+    all_k = sorted(st.session_state.word_dict.keys())
+    display = [w for w in all_k if (f_opt=="전체") or (f_opt=="해금 ✅" and w in st.session_state.mastered) or (f_opt=="미해금 🔒" and w not in st.session_state.mastered)]
     grid = st.columns(2)
-    for i, w in enumerate(display_words):
+    for i, w in enumerate(display):
         with grid[i % 2]:
+            count = st.session_state.word_counts.get(w, 0)
             if w in st.session_state.mastered:
-                st.write(f"✅ **{w}**")
-            else:
-                st.write(f"🔒 {w}")
+                st.write(f"✅ **{w}** `{count}회` ")
+            else: st.write(f"🔒 {w}")
