@@ -35,77 +35,92 @@ def load_data():
         return {}
 
 # ---------------------------------------------------------
-# 2. 세션 상태 및 데이터 초기화
+# 2. 세션 상태 및 학습 데이터 초기화
 # ---------------------------------------------------------
-if 'word_dict' not in st.session_state or st.sidebar.button("🔄 시트 데이터 새로고침"):
+if 'word_dict' not in st.session_state or st.sidebar.button("🔄 데이터 새로고침"):
     st.session_state.word_dict = load_data()
-    if st.session_state.word_dict:
-        st.session_state.current_quiz = random.choice(list(st.session_state.word_dict.keys()))
-        st.session_state.quiz_options = random.sample(list(st.session_state.word_dict.values()), 3)
-        if st.session_state.word_dict[st.session_state.current_quiz] not in st.session_state.quiz_options:
-            st.session_state.quiz_options[0] = st.session_state.word_dict[st.session_state.current_quiz]
-        random.shuffle(st.session_state.quiz_options)
+    # 학습 통계 초기화 (최초 1회만)
+    if 'stats' not in st.session_state:
+        st.session_state.stats = {w: {"solved": 0, "unlocked": False} for w in st.session_state.word_dict}
+    if 'wrong_words' not in st.session_state:
+        st.session_state.wrong_words = set()
+
+# 퀴즈용 상태 초기화
+if 'current_quiz' not in st.session_state and st.session_state.word_dict:
+    st.session_state.current_quiz = random.choice(list(st.session_state.word_dict.keys()))
 
 # ---------------------------------------------------------
-# 3. 메인 화면 구성 (탭 활용)
+# 3. 메인 화면 구성
 # ---------------------------------------------------------
 st.title("📚 VOCA MASTER")
 
-if not st.session_state.word_dict:
-    st.error("⚠️ 시트 데이터를 불러오지 못했습니다. 설정을 확인해주세요.")
-    st.stop()
+tab1, tab2, tab3, tab4 = st.tabs(["🔥 타이핑 퀘스트", "📖 단어 도감", "❌ 오답 노트", "⚙️ 설정"])
 
-# 탭 메뉴 구성
-tab1, tab2, tab3 = st.tabs(["🔥 일일 퀘스트", "📖 단어 도감", "⚙️ 관리"])
-
-# --- [Tab 1: 일일 퀘스트 (정답 맞히기)] ---
+# --- [Tab 1: 타이핑 퀘스트] ---
 with tab1:
-    st.subheader("오늘의 도전! 정답을 맞혀보세요.")
-    q_word = st.session_state.get('current_quiz')
-    
+    st.subheader("뜻을 보고 단어를 직접 타이핑하세요!")
+    q_word = st.session_state.current_quiz
     if q_word:
-        st.info(f"## {q_word}")
-        answer = st.session_state.word_dict[q_word]
+        q_mean = st.session_state.word_dict[q_word]
+        st.info(f"### 💡 뜻: {q_mean}")
         
-        # 사지선다형 퀴즈
-        user_choice = st.radio("알맞은 뜻을 고르세요:", st.session_state.quiz_options, index=None)
+        user_answer = st.text_input("정답 단어를 입력하세요:", key="quiz_input").strip()
         
-        if st.button("정답 확인"):
-            if user_choice == answer:
-                st.balloons()
-                st.success("정답입니다! 완벽해요! 🎉")
-            else:
-                st.error(f"아쉽네요! 정답은 '{answer}' 입니다.")
+        col1, col2 = st.columns(2)
+        with col1:
+            if st.button("정답 확인", use_container_width=True):
+                if user_answer.lower() == q_word.lower():
+                    st.balloons()
+                    st.success(f"정답입니다! 🎉 ({q_word})")
+                    # 통계 업데이트
+                    st.session_state.stats[q_word]["solved"] += 1
+                    st.session_state.stats[q_word]["unlocked"] = True
+                    if q_word in st.session_state.wrong_words:
+                        st.session_state.wrong_words.remove(q_word)
+                else:
+                    st.error(f"틀렸습니다! 정답은 '{q_word}' 입니다.")
+                    st.session_state.wrong_words.add(q_word)
         
-        if st.button("다음 문제 ➡️"):
-            st.session_state.current_quiz = random.choice(list(st.session_state.word_dict.keys()))
-            # 오답 후보 생성
-            all_means = list(st.session_state.word_dict.values())
-            st.session_state.quiz_options = random.sample(all_means, 3)
-            if st.session_state.word_dict[st.session_state.current_quiz] not in st.session_state.quiz_options:
-                st.session_state.quiz_options[0] = st.session_state.word_dict[st.session_state.current_quiz]
-            random.shuffle(st.session_state.quiz_options)
-            st.rerun()
+        with col2:
+            if st.button("다음 문제 ➡️", use_container_width=True):
+                st.session_state.current_quiz = random.choice(list(st.session_state.word_dict.keys()))
+                st.rerun()
 
-# --- [Tab 2: 단어 도감 (리스트 보기)] ---
+# --- [Tab 2: 단어 도감 (해금/미해금)] ---
 with tab2:
-    st.subheader("나만의 단어 도감")
-    search_query = st.text_input("단어 검색:", placeholder="찾고 싶은 단어를 입력하세요...")
+    st.subheader("📖 단어 도감")
+    search = st.text_input("도감 내 검색:", placeholder="단어를 입력하세요...")
     
-    # 검색 필터링
-    filtered_dict = {w: m for w, m in st.session_state.word_dict.items() if search_query.lower() in w.lower()}
+    display_data = []
+    for w, m in st.session_state.word_dict.items():
+        if search.lower() in w.lower():
+            stat = st.session_state.stats.get(w, {"solved": 0, "unlocked": False})
+            status = "✅ 해금" if stat["unlocked"] else "🔒 미해금"
+            display_data.append({
+                "상태": status,
+                "단어": w if stat["unlocked"] else "???",
+                "뜻": m,
+                "맞춘 횟수": stat["solved"]
+            })
     
-    st.write(f"총 **{len(filtered_dict)}**개의 단어가 있습니다.")
-    
-    # 도감 스타일 테이블
-    st.table([{"단어": w, "뜻": m} for w, m in list(filtered_dict.items())[:100]]) # 상위 100개만 표시
-    if len(filtered_dict) > 100:
-        st.caption("※ 단어가 너무 많아 상위 100개만 표시됩니다. 검색 기능을 활용하세요!")
+    st.dataframe(display_data, use_container_width=True)
 
-# --- [Tab 3: 관리 및 정보] ---
-with tab3:
-    st.write(f"현재 연결된 시트: **voka_master**")
-    st.write(f"로드된 단어 수: **{len(st.session_state.word_dict)}개**")
-    if st.button("전체 세션 초기화"):
+# --- [Tab 3: 오답 노트] ---
+with tab4: # 관리 탭
+    st.write(f"현재 로드된 단어: {len(st.session_state.word_dict)}개")
+    if st.button("모든 학습 데이터 초기화"):
         st.session_state.clear()
         st.rerun()
+
+with tab3:
+    st.subheader("❌ 오답 노트")
+    if not st.session_state.wrong_words:
+        st.write("틀린 단어가 없습니다. 완벽해요!")
+    else:
+        st.write(f"복습이 필요한 단어가 **{len(st.session_state.wrong_words)}**개 있습니다.")
+        for ww in list(st.session_state.wrong_words):
+            with st.expander(f"📌 {st.session_state.word_dict[ww]}"):
+                st.write(f"정답: **{ww}**")
+                if st.button(f"'{ww}' 복습 완료", key=f"del_{ww}"):
+                    st.session_state.wrong_words.remove(ww)
+                    st.rerun()
