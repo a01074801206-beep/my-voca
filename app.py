@@ -1,12 +1,26 @@
 import streamlit as st
+import gspread
+from google.oauth2.service_account import Credentials
 import random
 
 # 1. 페이지 설정
 st.set_page_config(page_title="VOCA MASTER", layout="centered", initial_sidebar_state="collapsed")
 
+# ---------------------------------------------------------
+# [추가] 구글 시트 연결 함수
+# ---------------------------------------------------------
+def init_connection():
+    scope = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
+    # 모바일에서 미리 설정해둔 Secrets 값을 불러옵니다.
+    creds = Credentials.from_service_account_info(st.secrets["gcp_service_account"], scopes=scope)
+    client = gspread.authorize(creds)
+    # 구글 시트 파일명을 정확히 입력하세요 (예: "VOCA_DATABASE")
+    return client.open("VOCA_DATABASE").sheet1 
+
+# ---------------------------------------------------------
 # 2. 데이터 및 세션 상태 초기화
+# ---------------------------------------------------------
 if 'word_dict' not in st.session_state:
-    # ※ 여기에 본인의 2,500단어 데이터를 넣으세요.
     st.session_state.word_dict = {
        "abstract": "추상적인, 개요, 추출하다, 요약하다",
         "accommodate": "수용하다, 숙박시키다, 편의를 도모하다, 적응하다",
@@ -3415,150 +3429,31 @@ if 'word_dict' not in st.session_state:
         "zeal": "열의, 열성",
         "zone": "지역, 구역",
     }
-    st.session_state.mastered = [] # 해금된 단어 리스트
-    st.session_state.wrongs = []    # 오답 리스트
-    st.session_state.word_counts = {word: 0 for word in st.session_state.word_dict.keys()} # 누적 정답수
-    st.session_state.word_last_seen = {word: 0 for word in st.session_state.word_dict.keys()} # 마지막 등장 시점
-    st.session_state.recent_words = [] # 잔상 방지용 (최근 15단어)
-    st.session_state.total_steps = 0   # 전체 학습 진행 횟수
-    st.session_state.mode = "일반"
-    st.session_state.feedback = None
-    st.session_state.today_count = 0
-    st.session_state.daily_goal = 10
-    st.session_state.current_word = random.choice(list(st.session_state.word_dict.keys()))
-    st.session_state.dark_mode = False
 
-# 3. 핵심 로직 함수
-def check_answer():
-    user_ans = st.session_state.user_input.strip()
-    correct_ans = st.session_state.word_dict[st.session_state.current_word]
-    
-    if user_ans and any(word in correct_ans for word in user_ans.split()):
-        st.session_state.feedback = {"type": "success", "ans": correct_ans}
-        st.session_state.word_counts[st.session_state.current_word] += 1
-        if st.session_state.current_word not in st.session_state.mastered:
-            st.session_state.mastered.append(st.session_state.current_word)
-            st.session_state.today_count += 1
-        if st.session_state.current_word in st.session_state.wrongs:
-            st.session_state.wrongs.remove(st.session_state.current_word)
-    else:
-        st.session_state.feedback = {"type": "error", "ans": correct_ans}
-        if st.session_state.current_word not in st.session_state.wrongs:
-            st.session_state.wrongs.append(st.session_state.current_word)
+# 3. 메인 화면
+st.title("📚 VOCA MASTER")
 
-def next_question():
-    st.session_state.total_steps += 1
-    all_words = list(st.session_state.word_dict.keys())
-    weights = []
-    
-    for word in all_words:
-        # 1) 잔상 방지: 최근 15개 단어는 제외
-        if word in st.session_state.recent_words:
-            weights.append(0)
-            continue
+# [추가] 구글 시트에 현재 단어장 백업하기 버튼
+if st.sidebar.button("📊 구글 시트에 전체 백업"):
+    try:
+        sheet = init_connection()
+        # 시트 초기화 (제목 표시줄 작성)
+        sheet.clear()
+        sheet.append_row(["단어(Word)", "뜻(Meaning)"])
         
-        # 2) 기본 가중치
-        score = 10
+        # 단어 데이터를 리스트 형태로 변환하여 한 번에 전송
+        data_to_save = [[word, mean] for word, mean in st.session_state.word_dict.items()]
+        sheet.append_rows(data_to_save)
         
-        # 3) 정답 횟수 감점: 많이 맞출수록 안 나옴 (최소 1점)
-        c_count = st.session_state.word_counts.get(word, 0)
-        score = max(1, score - (c_count * 2))
-        
-        # 4) 오답 가중치: 틀린 단어 우선 출제
-        if word in st.session_state.wrongs:
-            score += 15
-            
-        # 5) 망각 방지 보너스: 안 본 지 오래될수록 가중치 상승
-        gap = st.session_state.total_steps - st.session_state.word_last_seen.get(word, 0)
-        score += (gap // 20) # 20문제 지날 때마다 점수 1점씩 추가
-        
-        weights.append(score)
+        st.sidebar.success("구글 시트에 성공적으로 저장되었습니다!")
+    except Exception as e:
+        st.sidebar.error(f"연결 실패: {e}")
 
-    # 단어 추첨
-    selected_word = random.choices(all_words, weights=weights, k=1)[0]
-    
-    # 상태 업데이트
-    st.session_state.word_last_seen[selected_word] = st.session_state.total_steps
-    st.session_state.recent_words.append(selected_word)
-    if len(st.session_state.recent_words) > 15:
-        st.session_state.recent_words.pop(0)
-        
-    st.session_state.current_word = selected_word
-    st.session_state.feedback = None
+# --- 기존 단어장 퀴즈나 학습 로직을 여기에 계속 작성하세요 ---
+st.write(f"현재 로드된 단어 수: {len(st.session_state.word_dict)}개")
 
-# 4. 테마 및 CSS 스타일 (다크모드 & 버튼 가독성)
-if st.session_state.dark_mode:
-    bg_color, card_bg, text_color = "#121212", "#1e1e1e", "#FFFFFF"
-    input_bg, card_shadow = "#2D2D2D", "0 10px 25px rgba(0,0,0,0.5)"
-else:
-    bg_color, card_bg, text_color = "#F0F2F5", "#FFFFFF", "#1A1A1A"
-    input_bg, card_shadow = "#FFFFFF", "0 10px 25px rgba(0,0,0,0.1)"
-
-st.markdown(f"""
-    <style>
-    .stApp {{ background-color: {bg_color}; color: {text_color} !important; }}
-    .stApp p, .stApp span, .stApp label, .stApp div {{ color: {text_color} !important; }}
-    div.stButton > button {{
-        background-color: #4A90E2 !important; color: white !important;
-        border-radius: 12px !important; border: none !important;
-        height: 3.5em !important; font-weight: bold !important; width: 100% !important;
-    }}
-    .word-card {{
-        background-color: {card_bg}; padding: 40px 20px; border-radius: 20px;
-        text-align: center; box-shadow: {card_shadow}; margin: 20px 0;
-        border-bottom: 8px solid #4A90E2;
-    }}
-    .word-text {{ font-size: clamp(2.2rem, 10vw, 4rem); font-weight: 900; color: {text_color} !important; }}
-    .stTextInput input {{ background-color: {input_bg} !important; color: {text_color} !important; border-radius: 10px !important; border: 1px solid #4A90E2 !important; }}
-    .stTabs [data-baseweb="tab"] p {{ color: {text_color} !important; }}
-    </style>
-    """, unsafe_allow_html=True)
-
-# 5. 메인 UI
-col_t, col_btn = st.columns([0.8, 0.2])
-col_t.title("🎓 VOCA MASTER")
-if col_btn.button("☀️" if st.session_state.dark_mode else "🌙"):
-    st.session_state.dark_mode = not st.session_state.dark_mode
-    st.rerun()
-
-st.progress(min(st.session_state.today_count / st.session_state.daily_goal, 1.0))
-st.caption(f"📍 목표까지 {max(0, st.session_state.daily_goal - st.session_state.today_count)}개 남음 | 누적 학습: {st.session_state.total_steps}회")
-
-if st.session_state.feedback:
-    if st.session_state.feedback["type"] == "success":
-        st.success("✅ 정답입니다!")
-    else:
-        st.error(f"😢 오답! (정답: {st.session_state.feedback['ans']})")
-    if st.button("다음 단어로 ➡️", use_container_width=True):
-        next_question()
-        st.rerun()
-else:
-    card_edge = "#FF4B4B" if st.session_state.mode == "오답 복습" else "#4A90E2"
-    st.markdown(f'<div class="word-card" style="border-bottom-color: {card_edge};"><div class="word-text">{st.session_state.current_word}</div></div>', unsafe_allow_html=True)
-    st.text_input("뜻을 입력하고 엔터를 누르세요", key="user_input", on_change=check_answer)
-
-# 6. 하단 메뉴
-st.divider()
-tab1, tab2 = st.tabs(["🎮 모드", "📚 도감"])
-with tab1:
-    c1, c2 = st.columns(2)
-    if c1.button("일반 모드"):
-        st.session_state.mode = "일반"
-        next_question(); st.rerun()
-    if c2.button("오답 집중 모드"):
-        if st.session_state.wrongs:
-            st.session_state.mode = "오답 복습"
-            next_question(); st.rerun()
-        else: st.toast("오답이 없어요! ✨")
-
-with tab2:
-    f_opt = st.radio("필터", ["전체", "해금 ✅", "미해금 🔒"], horizontal=True)
-    all_k = sorted(st.session_state.word_dict.keys())
-    display = [w for w in all_k if (f_opt=="전체") or (f_opt=="해금 ✅" and w in st.session_state.mastered) or (f_opt=="미해금 🔒" and w not in st.session_state.mastered)]
-    grid = st.columns(2)
-    for i, w in enumerate(display):
-        with grid[i % 2]:
-            count = st.session_state.word_counts.get(w, 0)
-            if w in st.session_state.mastered:
-                st.write(f"✅ **{w}** `{count}회` ")
-            else: st.write(f"🔒 {w}")
+# 테스트용 랜덤 단어 출력
+word = random.choice(list(st.session_state.word_dict.keys()))
+st.subheader(f"오늘의 단어: {word}")
+if st.button("뜻 보기"):
+    st.info(st.session_state.word_dict[word])
