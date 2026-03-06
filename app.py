@@ -5,11 +5,12 @@ import json
 import random
 
 # 1. 페이지 설정
-st.set_page_config(page_title="VOCA MASTER", layout="wide")
+st.set_page_config(page_title="VOCA MASTER PRO", layout="wide")
 
 # ---------------------------------------------------------
 # [기능 1] 구글 시트 연결 및 데이터 로드
 # ---------------------------------------------------------
+@st.cache_data(ttl=600) # 10분간 캐시 유지
 def load_data():
     try:
         scope = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
@@ -49,97 +50,110 @@ if 'wrong_words' not in st.session_state:
 if 'current_quiz' not in st.session_state and st.session_state.word_dict:
     st.session_state.current_quiz = random.choice(list(st.session_state.word_dict.keys()))
 
-# 사이드바 데이터 새로고침
-if st.sidebar.button("🔄 데이터 강제 새로고침"):
-    st.session_state.word_dict = load_data()
-    new_stats = {w: {"solved": 0, "unlocked": False} for w in st.session_state.word_dict}
-    if 'stats' in st.session_state:
-        new_stats.update(st.session_state.stats)
-    st.session_state.stats = new_stats
-    st.rerun()
+if 'show_hint' not in st.session_state:
+    st.session_state.show_hint = False
 
 # ---------------------------------------------------------
 # 3. 메인 화면 구성
 # ---------------------------------------------------------
-st.title("📚 VOCA MASTER")
+st.title("📚 VOCA MASTER PRO")
 
-if not st.session_state.word_dict:
-    st.error("⚠️ 시트 데이터를 불러오지 못했습니다. 설정을 확인해주세요.")
-    st.stop()
-
-tab1, tab2, tab3, tab4 = st.tabs(["🔥 영-한 퀘스트", "📖 단어 도감", "❌ 오답 노트", "⚙️ 설정"])
-
-# --- [Tab 1: 영-한 타이핑 퀘스트] ---
-with tab1:
-    st.subheader("영어 단어를 보고 한글 뜻을 입력하세요!")
-    q_word = st.session_state.get('current_quiz')
+# [추천 2] 진척도 대시보드
+if st.session_state.word_dict:
+    unlocked_count = sum(1 for s in st.session_state.stats.values() if s["unlocked"])
+    total_count = len(st.session_state.word_dict)
+    progress = unlocked_count / total_count
     
+    col_stat1, col_stat2 = st.columns([4, 1])
+    with col_stat1:
+        st.progress(progress)
+    with col_stat2:
+        st.write(f"📊 **{progress*100:.1f}%** ({unlocked_count}/{total_count})")
+
+tab1, tab2, tab3, tab4 = st.tabs(["🎯 퀴즈", "📖 도감", "❌ 오답노트", "⚙️ 설정"])
+
+# --- [Tab 1: 퀴즈 (복습 모드 & 힌트 포함)] ---
+with tab1:
+    # [추천 3] 복습 모드 선택
+    mode = st.radio("모드 선택", ["전체 랜덤", "오답 집중 복습"], horizontal=True)
+    
+    st.divider()
+    
+    q_word = st.session_state.get('current_quiz')
     if q_word:
-        # 단어 표시 영역
-        st.markdown(f"""
-            <div style="background-color: #f0f2f6; padding: 30px; border-radius: 15px; text-align: center; margin-bottom: 20px;">
-                <h1 style="color: #0e1117; font-size: 60px; margin: 0;">{q_word}</h1>
-            </div>
-        """, unsafe_allow_html=True)
+        # 단어 표시
+        st.markdown(f"<div style='background-color: #f0f2f6; padding: 30px; border-radius: 15px; text-align: center;'><h1 style='font-size: 60px;'>{q_word}</h1></div>", unsafe_allow_html=True)
         
         answer_mean = st.session_state.word_dict[q_word]
         
+        # [추천 1] 힌트 기능
+        if st.session_state.show_hint:
+            hint_text = answer_mean[0] + " _ " * (len(answer_mean) - 1)
+            st.caption(f"💡 힌트: {hint_text} ({len(answer_mean)}글자)")
+
         with st.form(key="quiz_form", clear_on_submit=True):
-            user_input = st.text_input("이 단어의 뜻은? (시트와 똑같이 입력하세요)").strip()
-            submit = st.form_submit_button("정답 확인", use_container_width=True)
+            user_input = st.text_input("뜻을 입력하세요:").strip()
+            cols = st.columns(2)
+            submit = cols[0].form_submit_button("정답 확인", use_container_width=True)
+            hint_btn = cols[1].form_submit_button("힌트 보기", use_container_width=True)
             
+            if hint_btn:
+                st.session_state.show_hint = True
+                st.rerun()
+
             if submit:
                 if user_input == answer_mean:
                     st.balloons()
-                    st.success(f"정답입니다! 🎉 뜻: {answer_mean}")
+                    st.success(f"정답! 🎉 : {answer_mean}")
                     st.session_state.stats[q_word]["solved"] += 1
                     st.session_state.stats[q_word]["unlocked"] = True
                     if q_word in st.session_state.wrong_words:
                         st.session_state.wrong_words.remove(q_word)
                 else:
-                    st.error(f"오답입니다! 정답은 '{answer_mean}' 입니다.")
+                    st.error(f"오답! 정답은 '{answer_mean}'")
                     st.session_state.wrong_words.add(q_word)
-        
+
         if st.button("다음 단어 ➡️", use_container_width=True):
-            st.session_state.current_quiz = random.choice(list(st.session_state.word_dict.keys()))
+            if mode == "오답 집중 복습" and st.session_state.wrong_words:
+                st.session_state.current_quiz = random.choice(list(st.session_state.wrong_words))
+            else:
+                st.session_state.current_quiz = random.choice(list(st.session_state.word_dict.keys()))
+            st.session_state.show_hint = False
             st.rerun()
 
-# --- [Tab 2: 단어 도감 (해금 방식)] ---
+# --- [Tab 2: 도감] ---
 with tab2:
-    st.subheader("📖 단어 도감")
-    search = st.text_input("도감 내 검색 (단어 입력):", placeholder="검색어를 입력하세요...")
-    
+    search = st.text_input("검색:", placeholder="단어 검색...")
     display_data = []
-    if 'stats' in st.session_state:
-        for w, m in st.session_state.word_dict.items():
-            if search.lower() in w.lower():
-                stat = st.session_state.stats.get(w, {"solved": 0, "unlocked": False})
-                status = "✅ 해금" if stat["unlocked"] else "🔒 미해금"
-                display_data.append({
-                    "상태": status,
-                    "단어": w,
-                    "뜻": m if stat["unlocked"] else "??? (정답을 맞춰 해금하세요)",
-                    "맞춘 횟수": stat["solved"]
-                })
-        
-        st.dataframe(display_data, use_container_width=True)
+    for w, m in st.session_state.word_dict.items():
+        if search.lower() in w.lower():
+            stat = st.session_state.stats.get(w, {"solved": 0, "unlocked": False})
+            display_data.append({
+                "상태": "✅ 해금" if stat["unlocked"] else "🔒 미해금",
+                "단어": w,
+                "뜻": m if stat["unlocked"] else "???",
+                "횟수": stat["solved"]
+            })
+    st.dataframe(display_data, use_container_width=True)
 
-# --- [Tab 3: 오답 노트] ---
+# --- [Tab 3: 오답노트] ---
 with tab3:
-    st.subheader("❌ 오답 노트")
-    if not st.session_state.get('wrong_words'):
-        st.write("틀린 단어가 없습니다! 아주 훌륭해요.")
+    if not st.session_state.wrong_words:
+        st.write("깨끗합니다! ✨")
     else:
         for ww in list(st.session_state.wrong_words):
             with st.expander(f"📌 {ww}"):
-                st.write(f"정답(뜻): **{st.session_state.word_dict[ww]}**")
-                if st.button(f"'{ww}' 복습 완료", key=f"del_{ww}"):
+                st.write(f"뜻: {st.session_state.word_dict[ww]}")
+                if st.button(f"삭제", key=f"del_{ww}"):
                     st.session_state.wrong_words.remove(ww)
                     st.rerun()
 
 # --- [Tab 4: 설정] ---
 with tab4:
-    st.subheader("⚙️ 관리")
-    if st.button("모든 학습 기록(통계/오답) 초기화"):
+    if st.sidebar.button("🔄 시트 강제 동기화"):
+        st.cache_data.clear()
+        st.session_state.word_dict = load_data()
+        st.rerun()
+    if st.button("기록 초기화"):
         st.session_state.clear()
         st.rerun()
