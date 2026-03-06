@@ -21,7 +21,7 @@ def init_connection():
     client = gspread.authorize(creds)
     
     # ※ 본인의 구글 시트 이름을 정확히 입력하세요! (예: "단어장_DB")
-    return client.open("보카마스터_데이터베이스").sheet1 
+    return client.open("voka_master").sheet1 
 
 # 2. 데이터 초기화 (기존 2,500단어 데이터)
 if 'word_dict' not in st.session_state:
