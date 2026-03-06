@@ -20,12 +20,34 @@ def init_connection():
 
 def load_data():
     try:
-        sheet = init_connection()
-        # [수정] 제목줄 무시하고 모든 값을 리스트로 가져옴
+        # [수정] 연결 방식 보강
+        scope = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
+        service_account_info = json.loads(st.secrets["gcp_service_account"])
+        creds = Credentials.from_service_account_info(service_account_info, scopes=scope)
+        client = gspread.authorize(creds)
+        
+        # [중요] 이름 대신 '첫 번째 탭'을 인덱스로 직접 엽니다.
+        spreadsheet = client.open("보카마스터_데이터베이스")
+        sheet = spreadsheet.get_worksheet(0) # 0은 첫 번째 탭을 의미합니다.
+        
+        # 모든 데이터를 리스트로 가져옴
         rows = sheet.get_all_values()
         
-        if not rows or len(rows) < 1:
+        if not rows:
             return {}
+
+        word_dict = {}
+        for row in rows:
+            if len(row) >= 2:
+                w = str(row[0]).strip()
+                m = str(row[1]).strip()
+                # '단어'라는 제목줄이거나 빈 칸이면 제외
+                if w and w != "단어":
+                    word_dict[w] = m
+        return word_dict
+    except Exception as e:
+        st.sidebar.error(f"연결 상세 에러: {e}")
+        return {}
 
         word_dict = {}
         # 첫 번째 줄이 '단어/뜻' 제목이든 실제 데이터든 상관없이 싹 다 읽음
