@@ -10,30 +10,21 @@ st.set_page_config(page_title="VOCA MASTER", layout="centered")
 # ---------------------------------------------------------
 # [기능 1] 구글 시트 연결 및 데이터 로드 함수
 # ---------------------------------------------------------
-def init_connection():
-    scope = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
-    service_account_info = json.loads(st.secrets["gcp_service_account"])
-    creds = Credentials.from_service_account_info(service_account_info, scopes=scope)
-    client = gspread.authorize(creds)
-    # ※ 본인의 시트 이름을 정확히 입력하세요!
-    return client.open("보카마스터_데이터베이스").sheet1
-
 def load_data():
     try:
-        # [수정] 연결 방식 보강
         scope = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
         service_account_info = json.loads(st.secrets["gcp_service_account"])
         creds = Credentials.from_service_account_info(service_account_info, scopes=scope)
         client = gspread.authorize(creds)
         
-        # [중요] 이름 대신 '첫 번째 탭'을 인덱스로 직접 엽니다.
-        spreadsheet = client.open("보카마스터_데이터베이스")
-        sheet = spreadsheet.get_worksheet(0) # 0은 첫 번째 탭을 의미합니다.
+        # [수정] 파일명을 voka_master로 변경하고 첫 번째 워크시트를 엽니다.
+        spreadsheet = client.open("voka_master")
+        sheet = spreadsheet.get_worksheet(0) 
         
-        # 모든 데이터를 리스트로 가져옴
+        # 모든 데이터를 리스트로 가져옵니다.
         rows = sheet.get_all_values()
         
-        if not rows:
+        if not rows or len(rows) < 1:
             return {}
 
         word_dict = {}
@@ -41,27 +32,13 @@ def load_data():
             if len(row) >= 2:
                 w = str(row[0]).strip()
                 m = str(row[1]).strip()
-                # '단어'라는 제목줄이거나 빈 칸이면 제외
-                if w and w != "단어":
+                # 제목줄('단어')이거나 빈 칸이면 제외
+                if w and w != "단어" and w != "word":
                     word_dict[w] = m
         return word_dict
     except Exception as e:
-        st.sidebar.error(f"연결 상세 에러: {e}")
-        return {}
-
-        word_dict = {}
-        # 첫 번째 줄이 '단어/뜻' 제목이든 실제 데이터든 상관없이 싹 다 읽음
-        for row in rows:
-            if len(row) >= 2:
-                w = str(row[0]).strip()
-                m = str(row[1]).strip()
-                # '단어'라는 제목줄은 제외하고 실제 내용만 담기
-                if w and w != "단어":
-                    word_dict[w] = m
-        return word_dict
-    except Exception as e:
-        # Response 200 에러가 나더라도 무시하고 빈 딕셔너리 반환 방지
-        st.sidebar.error(f"연결 상태: {e}")
+        # 에러 메시지를 사이드바에 작게 표시하여 디버깅을 돕습니다.
+        st.sidebar.error(f"연결 상태 확인: {e}")
         return {}
 
 # ---------------------------------------------------------
@@ -70,35 +47,36 @@ def load_data():
 if 'word_dict' not in st.session_state or st.sidebar.button("🔄 데이터 강제 새로고침"):
     st.session_state.word_dict = load_data()
 
-# 퀴즈 상태 관리
+# 퀴즈 상태 초기화
 if 'current_word' not in st.session_state and st.session_state.word_dict:
     st.session_state.current_word = random.choice(list(st.session_state.word_dict.keys()))
 if 'show_mean' not in st.session_state:
     st.session_state.show_mean = False
 
 # ---------------------------------------------------------
-# 3. 메인 화면
+# 3. 메인 화면 구성
 # ---------------------------------------------------------
 st.title("📚 VOCA MASTER")
 
 if not st.session_state.word_dict:
-    st.error("⚠️ 시트에서 데이터를 가져오지 못했습니다.")
-    st.info("💡 해결방법: 스마트폰 구글 시트 앱을 열어 A열에 단어, B열에 뜻이 적혀있는지 확인하세요!")
-    if st.button("다시 시도"):
+    st.error("⚠️ 데이터를 가져오지 못했습니다.")
+    st.info("💡 확인사항: 1. 구글 시트 파일명이 'voka_master'가 맞나요? 2. 시트 2행부터 단어가 들어있나요?")
+    if st.button("다시 연결 시도"):
         st.rerun()
 else:
     st.success(f"✅ {len(st.session_state.word_dict)}개의 단어를 불러왔습니다.")
-    
     st.divider()
 
-    # 단어 학습 카드
+    # 단어 카드
     word = st.session_state.current_word
     st.markdown(f"""
-        <div style="background-color: #f0f2f6; padding: 30px; border-radius: 15px; text-align: center;">
-            <h1 style="margin: 0;">{word}</h1>
+        <div style="background-color: #f8f9fa; padding: 40px; border-radius: 20px; text-align: center; border: 1px solid #dee2e6;">
+            <h1 style="margin: 0; color: #1a1a1a;">{word}</h1>
         </div>
     """, unsafe_content_id=True)
 
+    st.write("") # 간격 조절
+    
     col1, col2 = st.columns(2)
     with col1:
         if st.button("👁️ 뜻 보기", use_container_width=True):
