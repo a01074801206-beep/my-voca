@@ -21,16 +21,32 @@ def init_connection():
     return client.open("보카마스터_데이터베이스").sheet1
 
 def load_data():
-    """구글 시트에서 전체 단어 읽어오기"""
+    """구글 시트에서 데이터를 더 확실하게 읽어오기"""
     try:
         sheet = init_connection()
-        # 모든 행 가져오기 (첫 줄은 '단어', '뜻' 제목이어야 함)
-        records = sheet.get_all_records()
-        # {'단어': 'apple', '뜻': '사과'} -> {'apple': '사과'} 변환
-        word_dict = {row['단어']: row['뜻'] for row in records if row['단어']}
+        
+        # [수정] 첫 번째 탭의 모든 값을 가져옵니다.
+        all_values = sheet.get_all_values()
+        
+        if not all_values or len(all_values) <= 1:
+            # 데이터가 제목줄밖에 없거나 아예 없는 경우
+            return {}
+
+        word_dict = {}
+        # 첫 번째 줄(제목)을 제외하고 반복
+        for row in all_values[1:]:
+            # 행에 최소 2개의 칸이 있고, '단어' 칸(row[0])이 비어있지 않은 경우
+            if len(row) >= 2:
+                word = str(row[0]).strip()
+                mean = str(row[1]).strip()
+                if word: # 단어가 존재할 때만 추가
+                    word_dict[word] = mean
+        
         return word_dict
+        
     except Exception as e:
-        st.error(f"❌ 데이터 로드 실패: {e}")
+        # 응답 200인데 에러가 난다면 데이터 파싱 문제일 가능성이 큼
+        st.error(f"❌ 상세 에러: {e}")
         return {}
 
 # ---------------------------------------------------------
