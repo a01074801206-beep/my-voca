@@ -21,16 +21,40 @@ def init_connection():
     return client.open("보카마스터_데이터베이스").sheet1
 
 def load_data():
-    """구글 시트에서 데이터를 더 확실하게 읽어오기"""
+    """구글 시트에서 데이터를 가장 확실하게 읽어오기 (Response 200 오류 방지)"""
     try:
         sheet = init_connection()
         
-        # [수정] 첫 번째 탭의 모든 값을 가져옵니다.
-        all_values = sheet.get_all_values()
+        # [수정] get_all_values() 대신 모든 값이 포함된 범위를 직접 지정하여 가져옵니다.
+        # 시트의 A1부터 B2501(2500단어 기준)까지의 데이터를 한 번에 가져옵니다.
+        all_values = sheet.get_values('A1:B2501')
         
         if not all_values or len(all_values) <= 1:
-            # 데이터가 제목줄밖에 없거나 아예 없는 경우
             return {}
+
+        word_dict = {}
+        # 첫 번째 줄(제목) 제외하고 반복
+        for row in all_values[1:]:
+            if len(row) >= 2:
+                word = str(row[0]).strip()
+                mean = str(row[1]).strip()
+                if word: 
+                    word_dict[word] = mean
+        
+        return word_dict
+        
+    except Exception as e:
+        # 에러 메시지가 <Response [200]>인 경우, 
+        # 실제로는 성공했으나 라이브러리 버그로 발생할 수 있으므로 강제로 다시 시도하거나 빈 값을 보냅니다.
+        if "200" in str(e):
+            # 이 경우 다시 시도하면 풀리는 경우가 많습니다.
+            try:
+                all_values = sheet.get_all_values()
+                return {str(row[0]).strip(): str(row[1]).strip() for row in all_values[1:] if row[0]}
+            except:
+                return {}
+        st.error(f"❌ 상세 에러: {e}")
+        return {}
 
         word_dict = {}
         # 첫 번째 줄(제목)을 제외하고 반복
