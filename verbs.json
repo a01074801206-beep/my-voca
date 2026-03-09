@@ -1,1245 +1,663 @@
-        abandon,버리다/포기하다
-absorb,흡수하다/열중시키다
-abstract,추출하다/요약하다
-accelerate,가속화하다
-accommodate,수용하다/편의를 도모하다
-accompany,동행하다/수반하다
-accomplish,성취하다
-accumulate,축적하다
-accuse,비난하다/고소하다
-achieve,성취하다/달성하다
-acknowledge,인정하다
-acquire,습득하다/얻다
-adapt,적응하다/개조하다
-address,다루다/연설하다
-adjust,조절하다/적응하다
-administer,관리하다/집행하다
-admire,감탄하다/존경하다
-admit,인정하다/허가하다
-adopt,채택하다/입양하다
-adore,숭배하다/아주 좋아하다
-advance,전진하다/진보하다
-advocate,옹호하다/지지하다
-affect,영향을 미치다
-affirm,단언하다/확인하다
-afford,~할 여유가 있다
-aggravate,악화시키다
-agree,동의하다
-aid,돕다/원조하다
-aim,겨냥하다/목표하다
-alarm,놀라게 하다
-alert,경고하다/주의를 환기하다
-alienate,멀어지게 하다/소외시키다
-align,나란히 하다/조정하다
-alleviate,완화시키다
-allocate,할당하다/배정하다
-allow,허락하다
-alter,바꾸다/변경하다
-alternate,교대로 일어나다
-amaze,놀라게 하다
-amend,개정하다/수정하다
-analyze,분석하다
-announce,발표하다/알리다
-annoy,짜증나게 하다
-anticipate,예상하다/기대하다
-apologize,사과하다
-appall,오싹하게 하다
-appeal,호소하다/매력을 끌다
-appear,나타나다/~처럼 보이다
-appease,달래다/진정시키다
-appoint,임명하다/정하다
-appreciate,감사하다/감상하다/가치를 인정하다
-approach,접근하다
-approve,승인하다/찬성하다
-argue,주장하다/논쟁하다
-arise,발생하다/일어나다
-arouse,깨우다/자극하다
-arrange,배열하다/준비하다
-arrest,체포하다/저지하다
-articulate,또렷하게 말하다
-ascend,오르다/상승하다
-ascribe,~의 탓으로 돌리다
-ask,묻다/요청하다
-aspire,열망하다
-assemble,모으다/조립하다
-assert,주장하다/단언하다
-assess,평가하다
-assign,배정하다/할당하다
-assimilate,흡수하다/동화시키다
-assist,돕다
-associate,연상하다/교제하다
-assume,가정하다/떠맡다
-assure,보장하다/확신시키다
-astonish,놀라게 하다
-attach,첨부하다/부착하다
-attain,달성하다/도달하다
-attempt,시도하다
-attend,참석하다/주의를 기울이다
-attract,끌어당기다/매혹하다
-attribute,~의 탓으로 돌리다
-audit,회계 감사하다/청강하다
-augment,증가시키다
-authorize,권한을 부여하다
-avoid,피하다
-await,기다리다
-awaken,깨우다
-balance,균형을 잡다
-ban,금지하다
-banish,추방하다
-bargain,흥정하다
-base,기초를 두다
-bear,참다/열매를 맺다
-beat,치다/이기다
-become,~이 되다
-beg,구걸하다/간청하다
-begin,시작하다
-behave,행동하다
-believe,믿다
-belong,속하다
-bend,구부리다
-benefit,이익을 얻다/주다
-betray,배신하다/드러내다
-bewilder,당혹하게 하다
-bid,명령하다/입찰하다
-bind,묶다/결합하다
-bite,물다
-blame,비난하다
-blend,섞다
-bless,축복하다
-block,차단하다/방해하다
-bloom,꽃이 피다
-blow,불다
-blush,얼굴을 붉히다
-boast,자랑하다
-boost,신장시키다/밀어 올리다
-border,접경하다
-borrow,빌리다
-bother,괴롭히다
-bounce,튀기다
-bound,튀어 오르다/제한하다
-bow,절하다/굴복하다
-break,깨뜨리다/휴식하다
-breed,번식하다/기르다
-bring,가져오다
-broadcast,방송하다
-broaden,넓히다
-browse,훑어보다
-brush,솔질하다
-build,세우다/건축하다
-burn,타다/태우다
-burst,터뜨리다
-bury,묻다
-calculate,계산하다
-call,부르다/전화하다
-cancel,취소하다
-capture,포착하다/포로로 잡다
-care,상관하다/돌보다
-carry,나르다/수행하다
-cast,던지다/배역을 정하다
-catch,잡다
-cause,원인이 되다/야기하다
-cease,그만두다/중지하다
-celebrate,축하하다
-center,집중하다/중심에 두다
-challenge,도전하다
-change,바꾸다
-characterize,특징짓다
-charge,청구하다/비난하다/충전하다
-chase,추격하다
-chat,잡담하다
-cheat,속이다
-check,확인하다/저지하다
-cheer,응원하다
-cherish,소중히 여기다
-chew,씹다
-choke,질식시키다
-choose,선택하다
-circulate,순환하다/유통되다
-cite,인용하다
-claim,주장하다/요구하다
-clarify,명확하게 하다
-classify,분류하다
-clean,청소하다
-clear,치우다/맑게 하다
-climb,오르다
-cling,매달리다/고수하다
-close,닫다
-clue,실마리를 주다
-cluster,밀집하다
-collaborate,협력하다
-collapse,무너지다/붕괴하다
-collect,수집하다
-combine,결합하다
-comfort,위로하다
-command,명령하다
-commemorate,기념하다
-commence,시작하다
-commend,칭찬하다
-comment,평하다/비평하다
-commit,저지르다/약속하다/전념하다
-communicate,의사소통하다
-compare,비교하다
-compel,강요하다
-compensate,보상하다
-compete,경쟁하다
-compile,편집하다/수집하다
-complain,불평하다
-complete,완성하다
-complicate,복잡하게 하다
-compliment,칭찬하다
-comply,따르다/응하다
-compose,구성하다/작곡하다
-comprehend,이해하다
-comprise,구성하다/포함하다
-compromise,타협하다/손상시키다
-compute,계산하다
-conceal,숨기다
-concede,인정하다/양보하다
-conceive,상상하다/품다
-concentrate,집중하다
-concern,관심을 갖다/걱정시키다
-conclude,결론짓다
-condemn,비난하다/유죄 판결을 내리다
-condense,압축하다/요약하다
-conduct,수행하다/지휘하다
-confer,수여하다/상담하다
-confess,자백하다
-confide,신뢰하다/비밀을 털어놓다
-confine,제한하다/가두다
-confirm,확인하다
-conflict,충돌하다
-conform,따르다/순응하다
-confound,혼란시키다
-confront,직면하다
-confuse,혼동하다
-congratulate,축하하다
-connect,연결하다
-conquer,정복하다
-consent,동의하다
-conserve,보존하다
-consider,고려하다
-consist,구성되다/일치하다
-consolidate,통합하다/강화하다
-conspire,공모하다
-constitute,구성하다/설립하다
-constrain,강제하다/억제하다
-construct,건설하다/구성하다
-consult,상담하다/참고하다
-consume,소비하다
-contact,접촉하다
-contain,함유하다/억제하다
-contemplate,심사숙고하다
-contend,다투다/주장하다
-continue,계속하다
-contract,계약하다/수축하다
-contradict,모순되다/반박하다
-contrast,대조하다
-contribute,기여하다/기부하다
-control,제어하다
-convert,전환하다
-convey,전달하다
-convict,유죄를 선고하다
-convince,확신시키다
-cooperate,협력하다
-coordinate,조정하다
-cope,대처하다
-copy,복사하다
-correct,정정하다
-correspond,일치하다/서신을 주고받다
-corrupt,타락시키다
-cost,비용이 들다
-count,세다/중요하다
-counter,반박하다
-cover,덮다/다루다
-create,창조하다
-credit,믿다/공로를 돌리다
-criticize,비판하다
-cultivate,경작하다/기르다
-cure,치료하다
-curb,억제하다
-cut,자르다
-damage,손상을 입히다
-dare,감히 ~하다
-dash,돌진하다
-deal,다루다/거래하다
-debate,토론하다
-decay,부패하다/쇠퇴하다
-deceive,속이다
-decide,결정하다
-declare,선언하다
-decline,거절하다/감소하다
-decorate,장식하다
-decrease,감소하다
-dedicate,헌신하다/바치다
-deduce,추론하다
-defend,방어하다
-define,정의하다
-deform,변형시키다
-defy,반항하다/거부하다
-delay,연기하다
-delegate,위임하다/대표로 파견하다
-delete,삭제하다
-deliberate,심사숙고하다
-deliver,배달하다/연설하다
-demand,요구하다
-demonstrate,증명하다/시연하다
-deny,부인하다/거절하다
-depart,떠나다
-depend,의존하다
-depict,묘사하다
-deploy,배치하다
-deposit,예금하다/두다
-deprive,박탈하다
-derive,유래하다/얻다
-descend,내려가다
-describe,묘사하다
-deserve,~할 가치가 있다
-design,설계하다
-designate,지정하다
-desire,바라다
-destroy,파괴하다
-detach,분리하다
-detect,탐지하다
-deter,저지하다
-determine,결정하다
-develop,발달하다/개발하다
-devise,고안하다
-devote,바치다/전념하다
-dictate,받아쓰게 하다/지시하다
-differ,다르다
-differentiate,구별하다
-diffuse,확산시키다
-digest,소화하다/요약하다
-diminish,줄어들다
-direct,지도하다/향하게 하다
-disable,불능하게 하다
-disagree,의견이 다르다
-disappear,사라지다
-disappoint,실망시키다
-discard,버리다
-discern,식별하다
-discharge,해고하다/방출하다
-discipline,훈련하다
-disclose,드러내다/폭로하다
-disconnect,단절하다
-discontinue,중단하다
-discount,할인하다/무시하다
-discourage,낙담시키다
-discover,발견하다
-discriminate,차별하다/식별하다
-discuss,토론하다
-disguise,변장하다/숨기다
-dislike,싫어하다
-dismiss,해고하다/무시하다
-disorder,어지럽히다
-display,전시하다
-dispose,배치하다/처분하다
-dispute,논쟁하다
-disregard,무시하다
-disrupt,방해하다/중단시키다
-dissolve,녹이다/해산하다
-distinguish,구별하다
-distort,왜곡하다
-distract,산만하게 하다
-distribute,분배하다
-disturb,방해하다
-dive,잠수하다
-divert,전환하다
-divide,나누다
-divorce,이혼하다
-do,하다
-dominate,지배하다
-donate,기부하다
-doom,운명 짓다
-doubt,의심하다
-download,다운로드하다
-drag,끌다
-drain,배수하다/소모시키다
-draw,그리다/끌다
-dream,꿈꾸다
-dress,옷을 입다
-drift,표류하다
-drill,훈련하다/구멍을 뚫다
-drink,마시다
-drive,운전하다/몰다
-drop,떨어뜨리다
-dry,말리다
-dump,내버리다
-duplicate,복사하다/복제하다
-dwell,거주하다/심사숙고하다
-earn,벌다/얻다
-ease,완화시키다/편하게 하다
-echo,울리다/되풀이하다
-edit,편집하다
-educate,교육하다
-effect,발생시키다/초래하다
-elaborate,정교하게 만들다/상세히 설명하다
-elect,선출하다
-elevate,올리다/승격시키다
-eliminate,제거하다
-embarrass,당황하게 하다
-embody,구현하다/구체화하다
-embrace,포옹하다/받아들이다
-emerge,나타나다/드러나다
-emphasize,강조하다
-employ,고용하다/이용하다
-empower,권한을 주다
-enable,가능하게 하다
-enact,제정하다/상연하다
-enclose,둘러싸다/동봉하다
-encounter,직면하다/만나다
-encourage,격려하다/장려하다
-endanger,위험에 빠뜨리다
-endorse,지지하다/배서하다
-endow,기부하다/부여하다
-endure,견디다/참다
-enforce,집행하다/강요하다
-engage,관여하다/약속하다/고용하다
-enhance,향상시키다
-enjoy,즐기다
-enlarge,확대하다
-enlighten,계몽하다/설명하다
-enlist,입대하다/협력을 얻다
-enrich,풍요롭게 하다
-enroll,등록하다
-ensure,보장하다/확실히 하다
-entail,수반하다
-enter,입장하다
-entertain,즐겁게 하다/대접하다
-entitle,자격을 주다/제목을 붙이다
-entrust,위임하다/맡기다
-enumerate,열거하다
-envisage,상상하다/예상하다
-envy,부러워하다
-equal,같다
-equip,갖추다
-erase,지우다
-erect,세우다/건립하다
-erode,침식하다/약화시키다
-err,실수하다
-escape,탈출하다
-establish,설립하다/확립하다
-estimate,추정하다/평가하다
-evaluate,평가하다
-evaporate,증발하다
-evoke,불러일으키다
-evolve,진화하다/발전하다
-exaggerate,과장하다
-examine,조사하다/검사하다
-exceed,넘다/초과하다
-exchange,교환하다
-excite,흥분시키다
-exclude,제외하다
-excus,변명하다/용서하다
-execute,처형하다/실행하다
-exemplify,예시하다/전형이 되다
-exert,휘두르다/노력하다
-exhale,숨을 내쉬다
-exhaust,지치게 하다/고갈시키다
-exhibit,전시하다/보여주다
-exile,추방하다
-exist,존재하다
-expand,확장하다
-expect,기대하다/예상하다
-expel,추방하다
-expend,소비하다
-experience,경험하다
-explain,설명하다
-explode,폭발하다
-exploit,이용하다/착취하다
-explore,탐험하다
-export,수출하다
-expose,노출시키다
-express,표현하다
-extend,연장하다/확장하다
-extinguish,끄다/멸종시키다
-extract,추출하다
-facilitate,용이하게 하다
-fade,시들다/사라지다
-fail,실패하다
-faint,기절하다
-fall,떨어지다
-falsify,위조하다
-falter,비틀거리다/말을 더듬다
-fancy,상상하다
-fascinate,매혹시키다
-fashion,만들다/형성하다
-fasten,묶다/고정하다
-favor,찬성하다/호의를 베풀다
-fear,두려워하다
-feed,먹이를 주다
-feel,느끼다
-feign,~인 척하다
-fetch,가져오다
-fight,싸우다
-fill,채우다
-filter,여과하다
-finance,자금을 대다
-find,찾다/알게 되다
-finish,끝내다
-fit,적합하다
-fix,고정시키다/수리하다
-flame,타오르다
-flash,번쩍이다
-flatter,아첨하다
-flee,달아나다
-float,뜨다
-flood,범람시키다
-flourish,번영하다
-flow,흐르다
-fluctuate,변동하다
-fly,날다
-focus,집중하다
-fold,접다
-follow,따르다
-forbid,금지하다
-force,강요하다
-forecast,예측하다
-foresee,예견하다
-foretell,예언하다
-forget,잊다
-forgive,용서하다
-form,형성하다
-formulate,공식화하다/만들어내다
-forsake,버리다
-fortify,강화하다
-foster,육성하다/아이를 맡아 기르다
-found,설립하다/기초를 두다
-frame,틀을 잡다
-freeze,얼다
-frighten,겁나게 하다
-frustrate,좌절시키다
-fulfill,이행하다/충족시키다
-function,기능하다
-fund,자금을 제공하다
-furnish,공급하다/비치하다
-gain,얻다
-gamble,도박하다
-gather,모으다
-gaze,응시하다
-generate,발생시키다
-get,얻다/되다
-give,주다
-glance,흘긋 보다
-glare,노려보다
-glitter,반짝이다
-glow,빛나다
-govern,통치하다
-grab,움켜쥐다
-grade,등급을 매기다
-graduate,졸업하다
-grant,승인하다/수여하다
-grasp,파악하다/꽉 잡다
-greet,인사하다
-grieve,슬퍼하다
-grind,갈다
-grow,성장하다
-guarantee,보장하다
-guard,지키다
-guess,추측하다
-guide,안내하다
-halt,중지하다
-handle,다루다
-happen,발생하다
-harass,괴롭히다
-harm,해치다
-harvest,수확하다
-hasten,서두르다
-hatch,부화하다
-hate,미워하다
-haunt,자주 나타나다/괴롭히다
-heal,치료하다
-hear,듣다
-heat,가열하다
-heighten,높이다
-help,돕다
-hesitate,주저하다
-hide,숨기다
-highlight,강조하다
-hinder,방해하다
-hint,암시하다
-hire,고용하다
-hit,치다
-hold,잡다/유지하다
-honor,존경하다
-hope,바라다
-host,주최하다
-hug,포옹하다
-humiliate,굴욕감을 주다
-hunt,사냥하다
-hurry,서두르다
-hurt,다치게 하다
-hypothesize,가설을 세우다
-identify,확인하다/식별하다
-ignore,무시하다
-illuminate,비추다/계몽하다
-illustrate,설명하다/삽화를 넣다
-imagine,상상하다
-imitate,모방하다
-immerse,담그다/몰두시키다
-immigrate,이주해 오다
-impact,영향을 주다
-impair,손상시키다
-impart,전달하다/주다
-impede,방해하다
-impel,재촉하다/강요하다
-implement,시행하다
-imply,암시하다
-import,수입하다
-impose,부과하다/강요하다
-impress,감명을 주다
-improve,향상시키다
-improvise,즉석에서 하다
-inaugurate,취임시키다/개시하다
-include,포함하다
-incorporate,통합하다/포함하다
-increase,증가하다
-indicate,가리키다/나타내다
-induce,유도하다/귀납하다
-indulge,탐닉하다/충족시키다
-infer,추론하다
-inflict,가하다/입히다
-influence,영향을 미치다
-inform,알리다
-infringe,위반하다/침해하다
-infuse,불어넣다
-inhabit,거주하다
-inherit,상속하다
-inhibit,억제하다
-initiate,시작하다
-inject,주입하다
-injure,상처를 입히다
-innovate,혁신하다
-input,입력하다
-inquire,문의하다
-inscribe,새기다
-insert,삽입하다
-insist,주장하다
-inspect,검사하다
-inspire,영감을 주다
-install,설치하다
-instigate,부추기다
-institute,설립하다/제정하다
-instruct,가르치다/지시하다
-insulate,절연하다/격리하다
-insult,모욕하다
-insure,보험에 들다/보장하다
-integrate,통합하다
-intend,의도하다
-intensify,강화하다
-interact,상호작용하다
-intercept,가로채다
-interfere,간섭하다
-interpret,해석하다
-interrupt,중단시키다
-intervene,개입하다
-interview,면접하다
-intimidate,위협하다
-introduce,소개하다
-intrude,침입하다
-invade,침입하다
-invalidate,무효로 하다
-invent,발명하다
-invest,투자하다
-investigate,조사하다
-invite,초대하다
-invoke,기원하다/호소하다
-involve,연루시키다/포함하다
-iron,다림질하다
-irrigate,관개하다
-irritate,짜증나게 하다
-isolate,고립시키다
-issue,발행하다/발표하다
-join,결합하다/가입하다
-joke,농담하다
-judge,판단하다/심사하다
-jump,뛰다
-justify,정당화하다
-keep,유지하다/지키다
-kick,차다
-kidnap,유괴하다
-kill,죽이다
-kiss,키스하다
-kneel,무릎 꿇다
-knit,뜨개질하다
-knock,두드리다
-know,알다
-label,라벨을 붙이다
-lack,부족하다
-land,착륙하다
-last,지속되다
-laugh,웃다
-launch,시작하다/출시하다
-lay,놓다/낳다
-lead,이끌다
-leak,새다
-lean,기대다
-leap,뛰어오르다
-learn,배우다
-leave,떠나다/남기다
-lecture,강의하다
-lend,빌려주다
-lengthen,길게 하다
-lessen,줄이다
-let,시키다/허락하다
-level,평평하게 하다
-levy,부과하다
-liberate,해방시키다
-license,허가하다
-lick,핥다
-lie,거짓말하다/눕다
-lift,들어 올리다
-light,밝히다
-like,좋아하다
-limit,제한하다
-link,연결하다
-liquidate,청산하다
-list,목록에 올리다
-listen,듣다
-live,살다
-load,싣다
-loan,빌려주다
-locate,위치시키다/찾아내다
-lock,잠그다
-log,일지에 기록하다
-look,보다
-loom,어렴풋이 나타나다
-loose,풀다
-lose,잃다
-love,사랑하다
-lower,낮추다
-lump,덩어리로 만들다
-lure,유혹하다
-magnify,확대하다
-maintain,유지하다/주장하다
-make,만들다
-manage,관리하다/가까스로 해내다
-manifest,드러내다
-manipulate,조종하다/조작하다
-manufacture,제조하다
-march,행진하다
-mark,표시하다
-market,시장에 내놓다
-marry,결혼하다
-marvel,놀라다
-mask,가리다
-master,숙달하다
-match,어울리다/필적하다
-matter,중요하다
-mature,성숙하다
-maximize,최대화하다
-mean,의미하다/의도하다
-measure,측정하다
-mediate,중재하다
-meet,만나다/충족시키다
-melt,녹다
-memorize,암기하다
-mend,고치다
-mention,언급하다
-merge,합병하다
-merit,~할 가치가 있다
-migrate,이동하다
-mind,언짢아하다/주의하다
-minimize,최소화하다
-miss,놓치다/그리워하다
-misunderstand,오해하다
-mix,섞다
-moan,신음하다
-mock,조롱하다
-model,모델로 삼다
-moderate,완화하다/사회 보다
-modify,수정하다
-monitor,감시하다/추적하다
-motivate,동기를 부여하다
-mount,오르다/시작하다
-mourn,애도하다
-move,움직이다/감동시키다
-multiply,곱하다/증식하다
-murder,살해하다
-murmur,중얼거리다
-muster,모으다
-mutate,돌연변이가 되다
-mutter,중얼거리다
-name,이름 짓다/임명하다
-narrow,좁히다
-navigate,항해하다/길을 찾다
-near,가까이 가다
-necessitate,필요로 하다
-need,필요하다
-neglect,소홀히 하다/무시하다
-negotiate,협상하다
-neutralize,중립화하다/무효화하다
-nod,끄덕이다
-nominate,지명하다
-normalize,정상화하다
-note,주목하다/적어두다
-notice,알아차리다
-notify,통보하다
-nourish,영양분을 주다/기르다
-number,번호를 매기다/수효가 ~에 이르다
-nurse,간호하다
-obey,복종하다
-object,반대하다
-oblige,강요하다/고마워하게 하다
-observe,관찰하다/준수하다
-obsess,사로잡히다
-obstacle,방해하다
-obtain,얻다
-occupy,점유하다
-occur,발생하다/생각나다
-offend,기분 상하게 하다/위반하다
-offer,제공하다
-omit,생략하다
-open,열다
-operate,작동하다/수술하다
-oppose,반대하다
-oppress,억압하다
-optimize,최적화하다
-order,주문하다/명령하다
-organize,조직하다
-orient,적응시키다/향하게 하다
-originate,유래하다
-outline,개요를 잡다
-outlive,~보다 오래 살다
-outnumber,~보다 수가 많다
-outperform,~보다 성능이 뛰어나다
-output,출력하다
-outweigh,~보다 비중이 크다
-overcome,극복하다
-overestimate,과대평가하다
-overhear,엿듣다
-overlap,겹치다
-overlook,간과하다/내려다보다
-overpower,압도하다
-overrate,과대평가하다
-overrule,기각하다/무효로 하다
-overrun,급격히 퍼지다
-overshadow,그늘지게 하다/무색하게 하다
-overtake,추월하다
-overthrow,타도하다
-overturn,뒤집다
-overwhelm,압도하다
-owe,빚지고 있다
-own,소유하다
-pack,싸다/짐을 꾸리다
-paint,칠하다
-paralyze,마비시키다
-pardon,용서하다
-part,헤어지다/나누다
-participate,참가하다
-pass,통과하다
-paste,붙이다
-pat,토닥이다
-patch,수선하다
-pause,중단하다
-pave,포장하다
-pay,지불하다
-perceive,인지하다
-perform,수행하다/공연하다
-perish,멸망하다/죽다
-permit,허가하다
-perpetuate,영속시키다
-perplex,당혹하게 하다
-persecute,박해하다
-persist,고집하다/지속하다
-persuade,설득하다
-pertain,속하다/관련 있다
-pervert,왜곡하다/타락시키다
-phone,전화하다
-photograph,사진 찍다
-pick,고르다/집다
-picture,상상하다/묘사하다
-pierce,뚫다
-pile,쌓다
-pin,핀으로 고정하다
-place,놓다
-plan,계획하다
-plant,심다
-play,놀다/연주하다
-plead,간청하다/변호하다
-please,기쁘게 하다
-pledge,약속하다/서약하다
-plot,모의하다/구성하다
-plough,갈다
-plug,메우다/연결하다
-plunge,뛰어들다/급락하다
-point,가리키다
-polish,닦다/다듬다
-poll,투표하다/여론조사하다
-pollute,오염시키다
-ponder,심사숙고하다
-pop,튀어 나오다
-portray,묘사하다
-pose,제기하다/자세를 취하다
-position,배치하다
-possess,소유하다
-post,게시하다/우송하다
-postpone,연기하다
-potentiate,강화하다
-pour,붓다/따르다
-practice,연습하다/실행하다
-praise,칭찬하다
-pray,기도하다
-preach,설교하다
-precede,앞서다
-precipitate,재촉하다/침전시키다
-preclude,방해하다/배제하다
-predict,예측하다
-prefer,선호하다
-prejudge,예단하다
-preoccupy,마음을 빼앗다
-prepare,준비하다
-prescribe,규정하다/처방하다
-present,제시하다/증정하다
-preserve,보존하다
-preside,주재하다
-press,누르다
-pressure,압력을 가하다
-presume,추정하다
-pretend,~인 척하다
-prevail,만연하다/이기다
-prevent,예방하다/방해하다
-price,가격을 매기다
-print,인쇄하다
-prioritize,우선순위를 매기다
-privatize,민영화하다
-prize,소중히 여기다
-proceed,진행하다
-process,처리하다
-proclaim,선언하다
-produce,생산하다
-profess,공언하다
-profit,이익을 얻다
-program,프로그램을 짜다
-progress,진보하다
-prohibit,금지하다
-project,계획하다/투영하다
-prolong,연장하다
-promise,약속하다
-promote,촉진하다/승진시키다
-prompt,유도하다/자극하다
-pronounce,발음하다/선언하다
-proofread,교정하다
-propel,추진하다
-prophesy,예언하다
-proportion,균형 잡히다
-propose,제안하다
-prosecute,기소하다
-prospect,탐사하다
-prosper,번영하다
-protect,보호하다
-protest,항의하다
-prove,증명하다
-provide,제공하다
-provoke,유발하다/화나게 하다
-pry,캐묻다
-publish,출판하다
-pull,당기다
-pump,퍼 올리다
-punch,찌르다
-punish,벌하다
-purchase,구매하다
-purify,정화하다
-pursue,추구하다
-push,밀다
-put,놓다
-qualify	자격을 얻다
-quantify	수량화하다
-quarrel	다투다
-question	질문하다/의심하다
-quit	그만두다
-quote	인용하다
-race	경주하다
-radiate	방출하다
-rage	분노하다
-raise	올리다/기르다
-range	범위가 ~에 이르다
-rank	등급을 매기다
-rate	평가하다
-ratify	비준하다
-reach	도달하다
-react	반응하다
-read	읽다
-realize	깨닫다/실현하다
-reap	수확하다
-rearrange	재배열하다
-reason	추론하다
-reassure	안심시키다
-rebel	반항하다
-recall	회상하다/취소하다
-recede	물러나다
-receive	받다
-reckon	계산하다/생각하다
-reclaim	개간하다/되찾다
-recognize	인정하다/알아보다
-recollect	회상하다
-recommend	추천하다
-reconcile	화해시키다
-reconstruct	재구성하다
-record	기록하다
-recover	회복하다
-recruit	모집하다
-rectify	개정하다/수정하다
-recycle	재활용하다
-reduce	줄이다
-refer	참조하다/언급하다
-refine	정제하다/세련되게 하다
-reflect	반영하다/반사하다
-reform	개혁하다
-refrain	삼가다
-refresh	새롭게 하다
-refrigerate	냉각하다
-refund	환불하다
-refuse	거절하다
-refute	반박하다
-regard	간주하다
-register	등록하다
-regret	후회하다
-regulate	규제하다/조절하다
-rehabilitate	재건하다/갱신시키다
-rehearse	예습하다
-reign	통치하다
-reinforce	강화하다
-reject	거절하다
-rejoice	기뻐하다
-relate	관련시키다/이야기하다
-relax	휴식을 취하다
-release	방출하다/석방하다
-relieve	완화하다/안도시키다
-rely	의지하다
-remain	남다
-remark	말하다/주목하다
-remember	기억하다
-remind	상기시키다
-reminisce	추억하다
-remit	송금하다/면제하다
-remove	제거하다
-render	~이 되게 하다/주다
-renew	갱신하다
-renounce	포기하다
-renovate	개조하다/수리하다
-rent	빌리다
-repair	수리하다
-repay	갚다
-repeal	폐지하다
-repeat	반복하다
-repel	쫓아버리다
-replace	대체하다
-reply	대답하다
-report	보고하다
-represent	대표하다/나타내다
-repress	억압하다
-reproduce	복제하다/번식하다
-reproach	비난하다
-reprove	비난하다
-request	요청하다
-require	요구하다
-rescue	구조하다
-resemble	~와 닮다
-resent	분개하다
-reserve	예약하다/보유하다
-reshape	모양을 바꾸다
-reside	거주하다
-resign	사임하다
-resist	저항하다
-resolve	결심하다/해결하다
-resort	의지하다
-respect	존경하다
-respond	응답하다
-rest	쉬다
-restore	복원하다
-restrain	억제하다
-restrict	제한하다
-result	결과로서 생기다
-resume	재개하다
-retain	유지하다
-retaliate	보복하다
-retard	지연시키다
-retire	은퇴하다
-retort	보복하다/말대꾸하다
-retrace	회상하다/되돌아가다
-retract	취소하다/철회하다
-retreat	후퇴하다
-retrieve	되찾다/회복하다
-reveal	드러내다
-revenge	복수하다
-revere	숭배하다
-reverse	뒤집다
-revert	되돌아가다
-revise	개정하다/수정하다
-revive	활성화하다/소생시키다
-revoke	취소하다
-revolt	반란을 일으키다
-reward	보상하다
-rid	제거하다
-ride	타다
-ring	울리다
-rise	오르다
-risk	위험을 무릅쓰다
-roam	배회하다
-roar	으르렁거리다
-rob	강탈하다
-rock	흔들다
-roll	구르다
-rot	부패하다
-rotate	회전하다
-rub	문지르다
-ruin	파괴하다/망치다
-rule	지배하다
-run	달리다/운영하다
-rush	서두르다
-sacrifice	희생하다
-sail	항해하다
-satisfy	만족시키다
-save	저장하다/구하다
-say	말하다
-scan	정밀 검사하다
-scare	겁주다
-scatter	흩뜨리다
-schedule	일정을 잡다
-scold	꾸짖다
-score	득점하다
-scorn	경멸하다
-scream	비명을 지르다
-seal	봉인하다
-search	검색하다/찾다
-secure	확보하다/안전하게 하다
-see	보다
-seek	추구하다/찾다
-seem	~처럼 보이다
-seize	붙잡다
-select	선택하다
-sell	팔다
-send	보내다
-sense	느끼다
-separate	분리하다
-serve	봉사하다/섬기다
-set	놓다/설정하다
-settle	정착하다/해결하다
-sever	절단하다
-sew	바느질하다
-shake	흔들다
-shape	형성하다
-share	공유하다
-shatter	박살 내다
-shave	면도하다
-shed	흘리다/벗다
-shelter	보호하다
-shift	이동하다/바꾸다
-shine	빛나다
-shiver	떨다
-shock	충격을 주다
-shoot	쏘다
-shorten	짧게 하다
-shout	외치다
-show	보여주다
-shrink	줄어들다
-shrug	어깨를 으쓱하다
-shut	닫다
-sigh	한숨 쉬다
-sign	서명하다
-signify	의미하다/나타내다
-simplify	단순화하다
-simulate	흉내 내다/모의 실험하다
-sit	앉다
-sketch	스케치하다
-skip	건너뛰다
-sleep	자다
-slice	얇게 자다
-slide	미끄러지다
-slip	미끄러지다/실수하다
-slow	느리게 하다
-smash	박살 내다
-smell	냄새 맡다
-smile	미소 짓다
-smoke	담배 피우다
-smooth	매끄럽게 하다
-snap	덥석 물다/부러뜨리다
-snatch	잡아채다
-sneeze	재채기하다
-soar	높이 치솟다
-solve	해결하다
-soothe	진정시키다
-sort	분류하다
-sound	소리 나다
-sow	씨 뿌리다
-spare	아끼다/용서하다
-speak	말하다
-specialize	전공하다/특수화하다
-specify	명기하다
-speculate	추측하다/투기하다
-spend	소비하다
-spin	돌다
-split	쪼개다
-spoil	망치다
-sponsor	후원하다
-spread	퍼뜨리다
-spring	튀어 오르다
-sprinkle	뿌리다
-stabilize	안정시키다
-stain	더럽히다
-stamp	도장을 찍다
-stand	서다/참다
-stare	응시하다
-start	시작하다
-state	진술하다
-stay	머무르다
-steal	훔치다
-steer	조종하다
-step	밟다
-stick	붙이다/고수하다
-stimulate	자극하다
-stink	악취가 나다
-stir	휘젓다/자극하다
-stop	멈추다
-store	저장하다
-straighten	똑바르게 하다
-strengthen	강화하다
-stress	강조하다
-stretch	늘리다
-strike	치다/파업하다
-strip	벗기다
-strive	노력하다
-structure	구조화하다
-study	공부하다
-stumble	비틀거리다
-subdue	진압하다
-subject	복종시키다
-submerge	잠수시키다
-submit	제출하다/굴복하다
-subscribe	구독하다
-substitute	대체하다
-subtract	빼다
-succeed	성공하다/계승하다
-suffer	고통받다
-suggest	제안하다/암시하다
-suit	적합하다
-summarize	요약하다
-supervise	감독하다
-supplement	보충하다
-supply	공급하다
-support	지지하다/부양하다
-suppose	가정하다
-suppress	진압하다/억제하다
-surf	파도타기 하다
-surmount	극복하다
-surpass	능가하다
-surprise	놀라게 하다
-surrender	항복하다
-surround	둘러싸다
-survey	조사하다
-survive	생존하다
-suspect	의심하다
-suspend	매달다/중지하다
-sustain	유지하다/지탱하다
-swallow	삼키다
-sway	흔들리다
-swear	맹세하다/욕하다
-sweep	쓸다
-swell	부풀다
-swim	수영하다
-swing	흔들다
-switch	바꾸다
-symbolize	상징하다
-sympathize	동정하다/공감하다
-synthesize	합성하다
+[
+  ["abandon", "버리다/포기하다"],
+  ["absorb", "흡수하다/열중시키다"],
+  ["abstract", "추출하다/요약하다"],
+  ["accelerate", "가속화하다"],
+  ["accommodate", "수용하다/편의를 도모하다"],
+  ["accompany", "동행하다/수반하다"],
+  ["accomplish", "성취하다"],
+  ["accumulate", "축적하다"],
+  ["accuse", "비난하다/고소하다"],
+  ["achieve", "성취하다/달성하다"],
+  ["acknowledge", "인정하다"],
+  ["acquire", "습득하다/얻다"],
+  ["adapt", "적응하다/개조하다"],
+  ["address", "다루다/연설하다"],
+  ["adjust", "조절하다/적응하다"],
+  ["administer", "관리하다/집행하다"],
+  ["admire", "감탄하다/존경하다"],
+  ["admit", "인정하다/허가하다"],
+  ["adopt", "채택하다/입양하다"],
+  ["adore", "숭배하다/아주 좋아하다"],
+  ["advance", "전진하다/진보하다"],
+  ["advocate", "옹호하다/지지하다"],
+  ["affect", "영향을 미치다"],
+  ["affirm", "단언하다/확인하다"],
+  ["afford", "~할 여유가 있다"],
+  ["aggravate", "악화시키다"],
+  ["agree", "동의하다"],
+  ["aid", "돕다/원조하다"],
+  ["aim", "겨냥하다/목표하다"],
+  ["alarm", "놀라게 하다"],
+  ["alert", "경고하다/주의를 환기하다"],
+  ["alienate", "멀어지게 하다/소외시키다"],
+  ["align", "나란히 하다/조정하다"],
+  ["alleviate", "완화시키다"],
+  ["allocate", "할당하다/배정하다"],
+  ["allow", "허락하다"],
+  ["alter", "바꾸다/변경하다"],
+  ["alternate", "교대로 일어나다"],
+  ["amaze", "놀라게 하다"],
+  ["amend", "개정하다/수정하다"],
+  ["analyze", "분석하다"],
+  ["announce", "발표하다/알리다"],
+  ["annoy", "짜증나게 하다"],
+  ["anticipate", "예상하다/기대하다"],
+  ["apologize", "사과하다"],
+  ["appall", "오싹하게 하다"],
+  ["appeal", "호소하다/매력을 끌다"],
+  ["appear", "나타나다/~처럼 보이다"],
+  ["appease", "달래다/진정시키다"],
+  ["appoint", "임명하다/정하다"],
+  ["appreciate", "감사하다/감상하다/가치를 인정하다"],
+  ["approach", "접근하다"],
+  ["approve", "승인하다/찬성하다"],
+  ["argue", "주장하다/논쟁하다"],
+  ["arise", "발생하다/일어나다"],
+  ["arouse", "깨우다/자극하다"],
+  ["arrange", "배열하다/준비하다"],
+  ["arrest", "체포하다/저지하다"],
+  ["articulate", "또렷하게 말하다"],
+  ["ascend", "오르다/상승하다"],
+  ["ascribe", "~의 탓으로 돌리다"],
+  ["ask", "묻다/요청하다"],
+  ["aspire", "열망하다"],
+  ["assemble", "모으다/조립하다"],
+  ["assert", "주장하다/단언하다"],
+  ["assess", "평가하다"],
+  ["assign", "배정하다/할당하다"],
+  ["assimilate", "흡수하다/동화시키다"],
+  ["assist", "돕다"],
+  ["associate", "연상하다/교제하다"],
+  ["assume", "가정하다/떠맡다"],
+  ["assure", "보장하다/확신시키다"],
+  ["astonish", "놀라게 하다"],
+  ["attach", "첨부하다/부착하다"],
+  ["attain", "달성하다/도달하다"],
+  ["attempt", "시도하다"],
+  ["attend", "참석하다/주의를 기울이다"],
+  ["attract", "끌어당기다/매혹하다"],
+  ["attribute", "~의 탓으로 돌리다"],
+  ["audit", "회계 감사하다/청강하다"],
+  ["augment", "증가시키다"],
+  ["authorize", "권한을 부여하다"],
+  ["avoid", "피하다"],
+  ["await", "기다리다"],
+  ["awaken", "깨우다"],
+  ["balance", "균형을 잡다"],
+  ["ban", "금지하다"],
+  ["banish", "추방하다"],
+  ["bargain", "흥정하다"],
+  ["base", "기초를 두다"],
+  ["bear", "참다/열매를 맺다"],
+  ["beat", "치다/이기다"],
+  ["become", "~이 되다"],
+  ["beg", "구걸하다/간청하다"],
+  ["begin", "시작하다"],
+  ["behave", "행동하다"],
+  ["believe", "믿다"],
+  ["belong", "속하다"],
+  ["bend", "구구리다"],
+  ["benefit", "이익을 얻다/주다"],
+  ["betray", "배신하다/드러내다"],
+  ["bewilder", "당혹하게 하다"],
+  ["bid", "명령하다/입찰하다"],
+  ["bind", "묶다/결합하다"],
+  ["bite", "물다"],
+  ["blame", "비난하다"],
+  ["blend", "섞다"],
+  ["bless", "축복하다"],
+  ["block", "차단하다/방해하다"],
+  ["bloom", "꽃이 피다"],
+  ["blow", "불다"],
+  ["blush", "얼굴을 붉히다"],
+  ["boast", "자랑하다"],
+  ["boost", "신장시키다/밀어 올리다"],
+  ["border", "접경하다"],
+  ["borrow", "빌리다"],
+  ["bother", "괴롭히다"],
+  ["bounce", "튀기다"],
+  ["bound", "튀어 오르다/제한하다"],
+  ["bow", "절하다/굴복하다"],
+  ["break", "깨뜨리다/휴식하다"],
+  ["breed", "번식하다/기르다"],
+  ["bring", "가져오다"],
+  ["broadcast", "방송하다"],
+  ["broaden", "넓히다"],
+  ["browse", "훑어보다"],
+  ["brush", "솔질하다"],
+  ["build", "세우다/건축하다"],
+  ["burn", "타다/태우다"],
+  ["burst", "터뜨리다"],
+  ["bury", "묻다"],
+  ["calculate", "계산하다"],
+  ["call", "부르다/전화하다"],
+  ["cancel", "취소하다"],
+  ["capture", "포착하다/포로로 잡다"],
+  ["care", "상관하다/돌보다"],
+  ["carry", "나르다/수행하다"],
+  ["cast", "던지다/배역을 정하다"],
+  ["catch", "잡다"],
+  ["cause", "원인이 되다/야기하다"],
+  ["cease", "그만두다/중지하다"],
+  ["celebrate", "축하하다"],
+  ["center", "집중하다/중심에 두다"],
+  ["challenge", "도전하다"],
+  ["change", "바꾸다"],
+  ["characterize", "특징짓다"],
+  ["charge", "청구하다/비난하다/충전하다"],
+  ["chase", "추격하다"],
+  ["chat", "잡담하다"],
+  ["cheat", "속이다"],
+  ["check", "확인하다/저지하다"],
+  ["cheer", "응원하다"],
+  ["cherish", "소중히 여기다"],
+  ["chew", "씹다"],
+  ["choke", "질식시키다"],
+  ["choose", "선택하다"],
+  ["circulate", "순환하다/유통되다"],
+  ["cite", "인용하다"],
+  ["claim", "주장하다/요구하다"],
+  ["clarify", "명확하게 하다"],
+  ["classify", "분류하다"],
+  ["clean", "청소하다"],
+  ["clear", "치우다/맑게 하다"],
+  ["climb", "오르다"],
+  ["cling", "매달리다/고수하다"],
+  ["close", "닫다"],
+  ["clue", "실마리를 주다"],
+  ["cluster", "밀집하다"],
+  ["collaborate", "협력하다"],
+  ["collapse", "무너지다/붕괴하다"],
+  ["collect", "수집하다"],
+  ["combine", "결합하다"],
+  ["comfort", "위로하다"],
+  ["command", "명령하다"],
+  ["commemorate", "기념하다"],
+  ["commence", "시작하다"],
+  ["commend", "칭찬하다"],
+  ["comment", "평하다/비평하다"],
+  ["commit", "저지르다/약속하다/전념하다"],
+  ["communicate", "의사소통하다"],
+  ["compare", "비교하다"],
+  ["compel", "강요하다"],
+  ["compensate", "보상하다"],
+  ["compete", "경쟁하다"],
+  ["compile", "편집하다/수집하다"],
+  ["complain", "불평하다"],
+  ["complete", "완성하다"],
+  ["complicate", "복잡하게 하다"],
+  ["compliment", "칭찬하다"],
+  ["comply", "따르다/응하다"],
+  ["compose", "구성하다/작곡하다"],
+  ["comprehend", "이해하다"],
+  ["comprise", "구성하다/포함하다"],
+  ["compromise", "타협하다/손상시키다"],
+  ["compute", "계산하다"],
+  ["conceal", "숨기다"],
+  ["concede", "인정하다/양보하다"],
+  ["conceive", "상상하다/품다"],
+  ["concentrate", "집중하다"],
+  ["concern", "관심을 갖다/걱정시키다"],
+  ["conclude", "결론짓다"],
+  ["condemn", "비난하다/유죄 판결을 내리다"],
+  ["condense", "압축하다/요약하다"],
+  ["conduct", "수행하다/지휘하다"],
+  ["confer", "수여하다/상담하다"],
+  ["confess", "자백하다"],
+  ["confide", "신뢰하다/비밀을 털어놓다"],
+  ["confine", "제한하다/가두다"],
+  ["confirm", "확인하다"],
+  ["conflict", "충돌하다"],
+  ["conform", "따르다/순응하다"],
+  ["confound", "혼란시키다"],
+  ["confront", "직면하다"],
+  ["confuse", "혼동하다"],
+  ["congratulate", "축하하다"],
+  ["connect", "연결하다"],
+  ["conquer", "정복하다"],
+  ["consent", "동의하다"],
+  ["conserve", "보존하다"],
+  ["consider", "고려하다"],
+  ["consist", "구성되다/일치하다"],
+  ["consolidate", "통합하다/강화하다"],
+  ["conspire", "공모하다"],
+  ["constitute", "구성하다/설립하다"],
+  ["constrain", "강제하다/억제하다"],
+  ["construct", "건설하다/구성하다"],
+  ["consult", "상담하다/참고하다"],
+  ["consume", "소비하다"],
+  ["contact", "접촉하다"],
+  ["contain", "함유하다/억제하다"],
+  ["contemplate", "심사숙고하다"],
+  ["contend", "다투다/주장하다"],
+  ["continue", "계속하다"],
+  ["contract", "계약하다/수축하다"],
+  ["contradict", "모순되다/반박하다"],
+  ["contrast", "대조하다"],
+  ["contribute", "기여하다/기부하다"],
+  ["control", "제어하다"],
+  ["convert", "전환하다"],
+  ["convey", "전달하다"],
+  ["convict", "유죄를 선고하다"],
+  ["convince", "확신시키다"],
+  ["cooperate", "협력하다"],
+  ["coordinate", "조정하다"],
+  ["cope", "대처하다"],
+  ["copy", "복사하다"],
+  ["correct", "정정하다"],
+  ["correspond", "일치하다/서신을 주고받다"],
+  ["corrupt", "타락시키다"],
+  ["cost", "비용이 들다"],
+  ["count", "세다/중요하다"],
+  ["counter", "반박하다"],
+  ["cover", "덮다/다루다"],
+  ["create", "창조하다"],
+  ["credit", "믿다/공로를 돌리다"],
+  ["criticize", "비판하다"],
+  ["cultivate", "경작하다/기르다"],
+  ["cure", "치료하다"],
+  ["curb", "억제하다"],
+  ["cut", "자르다"],
+  ["damage", "손상을 입히다"],
+  ["dare", "감히 ~하다"],
+  ["dash", "돌진하다"],
+  ["deal", "다루다/거래하다"],
+  ["debate", "토론하다"],
+  ["decay", "부패하다/쇠퇴하다"],
+  ["deceive", "속이다"],
+  ["decide", "결정하다"],
+  ["declare", "선언하다"],
+  ["decline", "거절하다/감소하다"],
+  ["decorate", "장식하다"],
+  ["decrease", "감소하다"],
+  ["dedicate", "헌신하다/바치다"],
+  ["deduce", "추론하다"],
+  ["defend", "방어하다"],
+  ["define", "정의하다"],
+  ["deform", "변형시키다"],
+  ["defy", "반항하다/거부하다"],
+  ["delay", "연기하다"],
+  ["delegate", "위임하다/대표로 파견하다"],
+  ["delete", "삭제하다"],
+  ["deliberate", "심사숙고하다"],
+  ["deliver", "배달하다/연설하다"],
+  ["demand", "요구하다"],
+  ["demonstrate", "증명하다/시연하다"],
+  ["deny", "부인하다/거절하다"],
+  ["depart", "떠나다"],
+  ["depend", "의존하다"],
+  ["depict", "묘사하다"],
+  ["deploy", "배치하다"],
+  ["deposit", "예금하다/두다"],
+  ["deprive", "박탈하다"],
+  ["derive", "유래하다/얻다"],
+  ["descend", "내려가다"],
+  ["describe", "묘사하다"],
+  ["deserve", "~할 가치가 있다"],
+  ["design", "설계하다"],
+  ["designate", "지정하다"],
+  ["desire", "바라다"],
+  ["destroy", "파괴하다"],
+  ["detach", "분리하다"],
+  ["detect", "탐지하다"],
+  ["deter", "저지하다"],
+  ["determine", "결정하다"],
+  ["develop", "발달하다/개발하다"],
+  ["devise", "고안하다"],
+  ["devote", "바치다/전념하다"],
+  ["dictate", "받아쓰게 하다/지시하다"],
+  ["differ", "다르다"],
+  ["differentiate", "구별하다"],
+  ["diffuse", "확산시키다"],
+  ["digest", "소화하다/요약하다"],
+  ["diminish", "줄어들다"],
+  ["direct", "지도하다/향하게 하다"],
+  ["disable", "불능하게 하다"],
+  ["disagree", "의견이 다르다"],
+  ["disappear", "사라지다"],
+  ["disappoint", "실망시키다"],
+  ["discard", "버리다"],
+  ["discern", "식별하다"],
+  ["discharge", "해고하다/방출하다"],
+  ["discipline", "훈련하다"],
+  ["disclose", "드러내다/폭로하다"],
+  ["disconnect", "단절하다"],
+  ["discontinue", "중단하다"],
+  ["discount", "할인하다/무시하다"],
+  ["discourage", "낙담시키다"],
+  ["discover", "발견하다"],
+  ["discriminate", "차별하다/식별하다"],
+  ["discuss", "토론하다"],
+  ["disguise", "변장하다/숨기다"],
+  ["dislike", "싫어하다"],
+  ["dismiss", "해고하다/무시하다"],
+  ["disorder", "어지럽히다"],
+  ["display", "전시하다"],
+  ["dispose", "배치하다/처분하다"],
+  ["dispute", "논쟁하다"],
+  ["disregard", "무시하다"],
+  ["disrupt", "방해하다/중단시키다"],
+  ["dissolve", "녹이다/해산하다"],
+  ["distinguish", "구별하다"],
+  ["distort", "왜곡하다"],
+  ["distract", "산만하게 하다"],
+  ["distribute", "분배하다"],
+  ["disturb", "방해하다"],
+  ["dive", "잠수하다"],
+  ["divert", "전환하다"],
+  ["divide", "나누다"],
+  ["divorce", "이혼하다"],
+  ["do", "하다"],
+  ["dominate", "지배하다"],
+  ["donate", "기부하다"],
+  ["doom", "운명 짓다"],
+  ["doubt", "의심하다"],
+  ["download", "다운로드하다"],
+  ["drag", "끌다"],
+  ["drain", "배수하다/소모시키다"],
+  ["draw", "그리다/끌다"],
+  ["dream", "꿈꾸다"],
+  ["dress", "옷을 입다"],
+  ["drift", "표류하다"],
+  ["drill", "훈련하다/구멍을 뚫다"],
+  ["drink", "마시다"],
+  ["drive", "운전하다/몰다"],
+  ["drop", "떨어뜨리다"],
+  ["dry", "말리다"],
+  ["dump", "내버리다"],
+  ["duplicate", "복사하다/복제하다"],
+  ["dwell", "거주하다/심사숙고하다"],
+  ["earn", "벌다/얻다"], ["ease", "완화시키다/편하게 하다"], ["echo", "울리다/되풀이하다"],
+  ["edit", "편집하다"], ["educate", "교육하다"], ["effect", "발생시키다/초래하다"],
+  ["elaborate", "정교하게 만들다/상세히 설명하다"], ["elect", "선출하다"], ["elevate", "올리다/승격시키다"],
+  ["eliminate", "제거하다"], ["embarrass", "당황하게 하다"], ["embody", "구현하다/구체화하다"],
+  ["embrace", "포옹하다/받아들이다"], ["emerge", "나타나다/드러나다"], ["emphasize", "강조하다"],
+  ["employ", "고용하다/이용하다"], ["empower", "권한을 주다"], ["enable", "가능하게 하다"],
+  ["enact", "제정하다/상연하다"], ["enclose", "둘러싸다/동봉하다"], ["encounter", "직면하다/만나다"],
+  ["encourage", "격려하다/장려하다"], ["endanger", "위험에 빠뜨리다"], ["endorse", "지지하다/배서하다"],
+  ["endow", "기부하다/부여하다"], ["endure", "견디다/참다"], ["enforce", "집행하다/강요하다"],
+  ["engage", "관여하다/약속하다/고용하다"], ["enhance", "향상시키다"], ["enjoy", "즐기다"],
+  ["enlarge", "확대하다"], ["enlighten", "계몽하다/설명하다"], ["enlist", "입대하다/협력을 얻다"],
+  ["enrich", "풍요롭게 하다"], ["enroll", "등록하다"], ["ensure", "보장하다/확실히 하다"],
+  ["entail", "수반하다"], ["enter", "입장하다"], ["entertain", "즐겁게 하다/대접하다"],
+  ["entitle", "자격을 주다/제목을 붙이다"], ["entrust", "위임하다/맡기다"], ["enumerate", "열거하다"],
+  ["envisage", "상상하다/예상하다"], ["envy", "부러워하다"], ["equal", "같다"],
+  ["equip", "갖추다"], ["erase", "지우다"], ["erect", "세우다/건립하다"],
+  ["erode", "침식하다/약화시키다"], ["err", "실수하다"], ["escape", "탈출하다"],
+  ["establish", "설립하다/확립하다"], ["estimate", "추정하다/평가하다"], ["evaluate", "평가하다"],
+  ["evaporate", "증발하다"], ["evoke", "불러일으키다"], ["evolve", "진화하다/발전하다"],
+  ["exaggerate", "과장하다"], ["examine", "조사하다/검사하다"], ["exceed", "넘다/초과하다"],
+  ["exchange", "교환하다"], ["excite", "흥분시키다"], ["exclude", "제외하다"],
+  ["excus", "변명하다/용서하다"], ["execute", "처형하다/실행하다"], ["exemplify", "예시하다/전형이 되다"],
+  ["exert", "휘두르다/노력하다"], ["exhale", "숨을 내쉬다"], ["exhaust", "지치게 하다/고갈시키다"],
+  ["exhibit", "전시하다/보여주다"], ["exile", "추방하다"], ["exist", "존재하다"],
+  ["expand", "확장하다"], ["expect", "기대하다/예상하다"], ["expel", "추방하다"],
+  ["expend", "소비하다"], ["experience", "경험하다"], ["explain", "설명하다"],
+  ["explode", "폭발하다"], ["exploit", "이용하다/착취하다"], ["explore", "탐험하다"],
+  ["export", "수출하다"], ["expose", "노출시키다"], ["express", "표현하다"],
+  ["extend", "연장하다/확장하다"], ["extinguish", "끄다/멸종시키다"], ["extract", "추출하다"],
+  ["facilitate", "용이하게 하다"], ["fade", "시들다/사라지다"], ["fail", "실패하다"],
+  ["faint", "기절하다"], ["fall", "떨어지다"], ["falsify", "위조하다"],
+  ["falter", "비틀거리다/말을 더듬다"], ["fancy", "상상하다"], ["fascinate", "매혹시키다"],
+  ["fashion", "만들다/형성하다"], ["fasten", "묶다/고정하다"], ["favor", "찬성하다/호의를 베풀다"],
+  ["fear", "두려워하다"], ["feed", "먹이를 주다"], ["feel", "느끼다"],
+  ["feign", "~인 척하다"], ["fetch", "가져오다"], ["fight", "싸우다"],
+  ["fill", "채우다"], ["filter", "여과하다"], ["finance", "자금을 대다"],
+  ["find", "찾다/알게 되다"], ["finish", "끝내다"], ["fit", "적합하다"],
+  ["fix", "고정시키다/수리하다"], ["flame", "타오르다"], ["flash", "번쩍이다"],
+  ["flatter", "아첨하다"], ["flee", "달아나다"], ["float", "뜨다"],
+  ["flood", "범람시키다"], ["flourish", "번영하다"], ["flow", "흐르다"],
+  ["fluctuate", "변동하다"], ["fly", "날다"], ["focus", "집중하다"],
+  ["fold", "접다"], ["follow", "따르다"], ["forbid", "금지하다"],
+  ["force", "강요하다"], ["forecast", "예측하다"], ["foresee", "예견하다"],
+  ["foretell", "예언하다"], ["forget", "잊다"], ["forgive", "용서하다"],
+  ["form", "형성하다"], ["formulate", "공식화하다/만들어내다"], ["forsake", "버리다"],
+  ["fortify", "강화하다"], ["foster", "육성하다/아이를 맡아 기르다"], ["found", "설립하다/기초를 두다"],
+  ["frame", "틀을 잡다"], ["freeze", "얼다"], ["frighten", "겁나게 하다"],
+  ["frustrate", "좌절시키다"], ["fulfill", "이행하다/충족시키다"], ["function", "기능하다"],
+  ["fund", "자금을 제공하다"], ["furnish", "공급하다/비치하다"], ["gain", "얻다"],
+  ["gamble", "도박하다"], ["gather", "모으다"], ["gaze", "응시하다"],
+  ["generate", "발생시키다"], ["get", "얻다/되다"], ["give", "주다"],
+  ["glance", "흘긋 보다"], ["glare", "노려보다"], ["glitter", "반짝이다"],
+  ["glow", "빛나다"], ["govern", "통치하다"], ["grab", "움켜쥐다"],
+  ["grade", "등급을 매기다"], ["graduate", "졸업하다"], ["grant", "승인하다/수여하다"],
+  ["grasp", "파악하다/꽉 잡다"], ["greet", "인사하다"], ["grieve", "슬퍼하다"],
+  ["grind", "갈다"], ["grow", "성장하다"], ["guarantee", "보장하다"],
+  ["guard", "지키다"], ["guess", "추측하다"], ["guide", "안내하다"],
+  ["halt", "중지하다"], ["handle", "다루다"], ["happen", "발생하다"],
+  ["harass", "괴롭히다"], ["harm", "해치다"], ["harvest", "수확하다"],
+  ["hasten", "서두르다"], ["hatch", "부화하다"], ["hate", "미워하다"],
+  ["haunt", "자주 나타나다/괴롭히다"], ["heal", "치료하다"], ["hear", "듣다"],
+  ["heat", "가열하다"], ["heighten", "높이다"], ["help", "돕다"],
+  ["hesitate", "주저하다"], ["hide", "숨기다"], ["highlight", "강조하다"],
+  ["hinder", "방해하다"], ["hint", "암시하다"], ["hire", "고용하다"],
+  ["hit", "치다"], ["hold", "잡다/유지하다"], ["honor", "존경하다"],
+  ["hope", "바라다"], ["host", "주최하다"], ["hug", "포옹하다"],
+  ["humiliate", "굴욕감을 주다"], ["hunt", "사냥하다"], ["hurry", "서두르다"],
+  ["hurt", "다치게 하다"], ["hypothesize", "가설을 세우다"], ["identify", "확인하다/식별하다"],
+  ["ignore", "무시하다"], ["illuminate", "비추다/계몽하다"], ["illustrate", "설명하다/삽화를 넣다"],
+  ["imagine", "상상하다"], ["imitate", "모방하다"], ["immerse", "담그다/몰두시키다"],
+  ["immigrate", "이주해 오다"], ["impact", "영향을 주다"], ["impair", "손상시키다"],
+  ["impart", "전달하다/주다"], ["impede", "방해하다"], ["impel", "재촉하다/강요하다"],
+  ["implement", "시행하다"], ["imply", "암시하다"], ["import", "수입하다"],
+  ["impose", "부과하다/강요하다"], ["impress", "감명을 주다"], ["improve", "향상시키다"],
+  ["improvise", "즉석에서 하다"], ["inaugurate", "취임시키다/개시하다"], ["include", "포함하다"],
+  ["incorporate", "통합하다/포함하다"], ["increase", "증가하다"], ["indicate", "가리키다/나타내다"],
+  ["induce", "유도하다/귀납하다"], ["indulge", "탐닉하다/충족시키다"], ["infer", "추론하다"],
+  ["inflict", "가하다/입히다"], ["influence", "영향을 미치다"], ["inform", "알리다"],
+  ["infringe", "위반하다/침해하다"], ["infuse", "불어넣다"], ["inhabit", "거주하다"],
+  ["inherit", "상속하다"], ["inhibit", "억제하다"], ["initiate", "시작하다"],
+  ["inject", "주입하다"], ["injure", "상처를 입히다"], ["innovate", "혁신하다"],
+  ["input", "입력하다"], ["inquire", "문의하다"], ["inscribe", "새기다"],
+  ["insert", "삽입하다"], ["insist", "주장하다"], ["inspect", "검사하다"],
+  ["inspire", "영감을 주다"], ["install", "설치하다"], ["instigate", "부추기다"],
+  ["institute", "설립하다/제정하다"], ["instruct", "가르치다/지시하다"], ["insulate", "절연하다/격리하다"],
+  ["insult", "모욕하다"], ["insure", "보험에 들다/보장하다"], ["integrate", "통합하다"],
+  ["intend", "의도하다"], ["intensify", "강화하다"], ["interact", "상호작용하다"],
+  ["intercept", "가로채다"], ["interfere", "간섭하다"], ["interpret", "해석하다"],
+  ["interrupt", "중단시키다"], ["intervene", "개입하다"], ["interview", "면접하다"],
+  ["intimidate", "위협하다"], ["introduce", "소개하다"], ["intrude", "침입하다"],
+  ["invade", "침입하다"], ["invalidate", "무효로 하다"], ["invent", "발명하다"],
+  ["invest", "투자하다"], ["investigate", "조사하다"], ["invite", "초대하다"],
+  ["invoke", "기원하다/호소하다"], ["involve", "연루시키다/포함하다"], ["iron", "다림질하다"],
+  ["irrigate", "관개하다"], ["irritate", "짜증나게 하다"], ["isolate", "고립시키다"],
+  ["issue", "발행하다/발표하다"], ["join", "결합하다/가입하다"], ["joke", "농담하다"],
+  ["judge", "판단하다/심사하다"], ["jump", "뛰다"], ["justify", "정당화하다"],
+  ["keep", "유지하다/지키다"], ["kick", "차다"], ["kidnap", "유괴하다"],
+  ["kill", "죽이다"], ["kiss", "키스하다"], ["kneel", "무릎 꿇다"],
+  ["knit", "뜨개질하다"], ["knock", "두드리다"], ["know", "알다"],
+  ["label", "라벨을 붙이다"], ["lack", "부족하다"], ["land", "착륙하다"],
+  ["last", "지속되다"], ["laugh", "웃다"], ["launch", "시작하다/출시하다"],
+  ["lay", "놓다/낳다"], ["lead", "이끌다"], ["leak", "새다"],
+  ["lean", "기대다"], ["leap", "뛰어오르다"], ["learn", "배우다"],
+  ["leave", "떠나다/남기다"], ["lecture", "강의하다"], ["lend", "빌려주다"],
+  ["lengthen", "길게 하다"], ["lessen", "줄이다"], ["let", "시키다/허락하다"],
+  ["level", "평평하게 하다"], ["levy", "부과하다"], ["liberate", "해방시키다"],
+  ["license", "허가하다"], ["lick", "핥다"], ["lie", "거짓말하다/눕다"],
+  ["lift", "들어 올리다"], ["light", "밝히다"], ["like", "좋아하다"],
+  ["limit", "제한하다"], ["link", "연결하다"], ["liquidate", "청산하다"],
+  ["list", "목록에 올리다"], ["listen", "듣다"], ["live", "살다"],
+  ["load", "싣다"], ["loan", "빌려주다"], ["locate", "위치시키다/찾아내다"],
+  ["lock", "잠그다"], ["log", "일지에 기록하다"], ["look", "보다"],
+  ["loom", "어렴풋이 나타나다"], ["loose", "풀다"], ["lose", "잃다"],
+  ["love", "사랑하다"], ["lower", "낮추다"], ["lump", "덩어리로 만들다"],
+  ["lure", "유혹하다"], ["magnify", "확대하다"], ["maintain", "유지하다/주장하다"],
+  ["make", "만들다"], ["manage", "관리하다/가까스로 해내다"], ["manifest", "드러내다"],
+  ["manipulate", "조종하다/조작하다"], ["manufacture", "제조하다"], ["march", "행진하다"],
+  ["mark", "표시하다"], ["market", "시장에 내놓다"], ["marry", "결혼하다"],
+  ["marvel", "놀라다"], ["mask", "가리다"], ["master", "숙달하다"],
+  ["match", "어울리다/필적하다"], ["matter", "중요하다"], ["mature", "성숙하다"],
+  ["maximize", "최대화하다"], ["mean", "의미하다/의도하다"], ["measure", "측정하다"],
+  ["mediate", "중재하다"], ["meet", "만나다/충족시키다"], ["melt", "녹다"],
+  ["memorize", "암기하다"], ["mend", "고치다"], ["mention", "언급하다"],
+  ["merge", "합병하다"], ["merit", "~할 가치가 있다"], ["migrate", "이동하다"],
+  ["mind", "언짢아하다/주의하다"], ["minimize", "최소화하다"], ["miss", "놓치다/그리워하다"],
+  ["misunderstand", "오해하다"], ["mix", "섞다"], ["moan", "신음하다"],
+  ["mock", "조롱하다"], ["model", "모델로 삼다"], ["moderate", "완화하다/사회 보다"],
+  ["modify", "수정하다"], ["monitor", "감시하다/추적하다"], ["motivate", "동기를 부여하다"],
+  ["mount", "오르다/시작하다"], ["mourn", "애도하다"], ["move", "움직이다/감동시키다"],
+  ["multiply", "곱하다/증식하다"], ["murder", "살해하다"], ["murmur", "중얼거리다"],
+  ["muster", "모으다"], ["mutate", "돌연변이가 되다"], ["mutter", "중얼거리다"],
+  ["name", "이름 짓다/임명하다"], ["narrow", "좁히다"], ["navigate", "항해하다/길을 찾다"],
+  ["near", "가까이 가다"], ["necessitate", "필요로 하다"], ["need", "필요하다"],
+  ["neglect", "소홀히 하다/무시하다"], ["negotiate", "협상하다"], ["neutralize", "중립화하다/무효화하다"],
+  ["nod", "끄덕이다"], ["nominate", "지명하다"], ["normalize", "정상화하다"],
+  ["note", "주목하다/적어두다"], ["notice", "알아차리다"], ["notify", "통보하다"],
+  ["nourish", "영양분을 주다/기르다"], ["number", "번호를 매기다/수효가 ~에 이르다"], ["nurse", "간호하다"],
+  ["obey", "복종하다"], ["object", "반대하다"], ["oblige", "강요하다/고마워하게 하다"],
+  ["observe", "관찰하다/준수하다"], ["obsess", "사로잡히다"], ["obstacle", "방해하다"],
+  ["obtain", "얻다"], ["occupy", "점유하다"], ["occur", "발생하다/생각나다"],
+  ["offend", "기분 상하게 하다/위반하다"], ["offer", "제공하다"], ["omit", "생략하다"],
+  ["open", "열다"], ["operate", "작동하다/수술하다"], ["oppose", "반대하다"],
+  ["oppress", "억압하다"], ["optimize", "최적화하다"], ["order", "주문하다/명령하다"],
+  ["organize", "조직하다"], ["orient", "적응시키다/향하게 하다"], ["originate", "유래하다"],
+  ["outline", "개요를 잡다"], ["outlive", "~보다 오래 살다"], ["outnumber", "~보다 수가 많다"],
+  ["outperform", "~보다 성능이 뛰어나다"], ["output", "출력하다"], ["outweigh", "~보다 비중이 크다"],
+  ["overcome", "극복하다"], ["overestimate", "과대평가하다"], ["overhear", "엿듣다"],
+  ["overlap", "겹치다"], ["overlook", "간과하다/내려다보다"], ["overpower", "압도하다"],
+  ["overrate", "과대평가하다"], ["overrule", "기각하다/무효로 하다"], ["overrun", "급격히 퍼지다"],
+  ["overshadow", "그늘지게 하다/무색하게 하다"], ["overtake", "추월하다"], ["overthrow", "타도하다"],
+  ["overturn", "뒤집다"], ["overwhelm", "압도하다"], ["owe", "빚지고 있다"],
+  ["own", "소유하다"], ["pack", "싸다/짐을 꾸리다"], ["paint", "칠하다"],
+  ["paralyze", "마비시키다"], ["pardon", "용서하다"], ["part", "헤어지다/나누다"],
+  ["participate", "참가하다"], ["pass", "통과하다"], ["paste", "붙이다"],
+  ["pat", "토닥이다"], ["patch", "수선하다"], ["pause", "중단하다"],
+  ["pave", "포장하다"], ["pay", "지불하다"], ["perceive", "인지하다"],
+  ["perform", "수행하다/공연하다"], ["perish", "멸망하다/죽다"], ["permit", "허가하다"],
+  ["perpetuate", "영속시키다"], ["perplex", "당혹하게 하다"], ["persecute", "박해하다"],
+  ["persist", "고집하다/지속하다"], ["persuade", "설득하다"], ["pertain", "속하다/관련 있다"],
+  ["pervert", "왜곡하다/타락시키다"], ["phone", "전화하다"], ["photograph", "사진 찍다"],
+  ["pick", "고르다/집다"], ["picture", "상상하다/묘사하다"], ["pierce", "뚫다"],
+  ["pile", "쌓다"], ["pin", "핀으로 고정하다"], ["place", "놓다"],
+  ["plan", "계획하다"], ["plant", "심다"], ["play", "놀다/연주하다"],
+  ["plead", "간청하다/변호하다"], ["please", "기쁘게 하다"], ["pledge", "약속하다/서약하다"],
+  ["plot", "모의하다/구성하다"], ["plough", "갈다"], ["plug", "메우다/연결하다"],
+  ["plunge", "뛰어들다/급락하다"], ["point", "가리키다"], ["polish", "닦다/다듬다"],
+  ["poll", "투표하다/여론조사하다"], ["pollute", "오염시키다"], ["ponder", "심사숙고하다"],
+  ["pop", "튀어 나오다"], ["portray", "묘사하다"], ["pose", "제기하다/자세를 취하다"],
+  ["position", "배치하다"], ["possess", "소유하다"], ["post", "게시하다/우송하다"],
+  ["postpone", "연기하다"], ["potentiate", "강화하다"], ["pour", "붓다/따르다"],
+  ["practice", "연습하다/실행하다"], ["praise", "칭찬하다"], ["pray", "기도하다"],
+  ["preach", "설교하다"], ["precede", "앞서다"], ["precipitate", "재촉하다/침전시키다"],
+  ["preclude", "방해하다/배제하다"], ["predict", "예측하다"], ["prefer", "선호하다"],
+  ["prejudge", "예단하다"], ["preoccupy", "마음을 빼앗다"], ["prepare", "준비하다"],
+  ["prescribe", "규정하다/처방하다"], ["present", "제시하다/증정하다"], ["preserve", "보존하다"],
+  ["preside", "주재하다"], ["press", "누르다"], ["pressure", "압력을 가하다"],
+  ["presume", "추정하다"], ["pretend", "~인 척하다"], ["prevail", "만연하다/이기다"],
+  ["prevent", "예방하다/방해하다"], ["price", "가격을 매기다"], ["print", "인쇄하다"],
+  ["prioritize", "우선순위를 매기다"], ["privatize", "민영화하다"], ["prize", "소중히 여기다"],
+  ["proceed", "진행하다"], ["process", "처리하다"], ["proclaim", "선언하다"],
+  ["produce", "생산하다"], ["profess", "공언하다"], ["profit", "이익을 얻다"],
+  ["program", "프로그램을 짜다"], ["progress", "진보하다"], ["prohibit", "금지하다"],
+  ["project", "계획하다/투영하다"], ["prolong", "연장하다"], ["promise", "약속하다"],
+  ["promote", "촉진하다/승진시키다"], ["prompt", "유도하다/자극하다"], ["pronounce", "발음하다/선언하다"],
+  ["proofread", "교정하다"], ["propel", "추진하다"], ["prophesy", "예언하다"],
+  ["proportion", "균형 잡히다"], ["propose", "제안하다"], ["prosecute", "기소하다"],
+  ["prospect", "탐사하다"], ["prosper", "번영하다"], ["protect", "보호하다"],
+  ["protest", "항의하다"], ["prove", "증명하다"], ["provide", "제공하다"],
+  ["provoke", "유발하다/화나게 하다"], ["pry", "캐묻다"], ["publish", "출판하다"],
+  ["pull", "당기다"], ["pump", "퍼 올리다"], ["punch", "찌르다"],
+  ["punish", "벌하다"], ["purchase", "구매하다"], ["purify", "정화하다"],
+  ["pursue", "추구하다"], ["push", "밀다"], ["put", "놓다"],
+  ["qualify", "자격을 얻다"], ["quantify", "수량화하다"], ["quarrel", "다투다"],
+  ["question", "질문하다/의심하다"], ["quit", "그만두다"], ["quote", "인용하다"],
+  ["race", "경주하다"], ["radiate", "방출하다"], ["rage", "분노하다"],
+  ["raise", "올리다/기르다"], ["range", "범위가 ~에 이르다"], ["rank", "등급을 매기다"],
+  ["rate", "평가하다"], ["ratify", "비준하다"], ["reach", "도달하다"],
+  ["react", "반응하다"], ["read", "읽다"], ["realize", "깨닫다/실현하다"],
+  ["reap", "수확하다"], ["rearrange", "재배열하다"], ["reason", "추론하다"],
+  ["reassure", "안심시키다"], ["rebel", "반항하다"], ["recall", "회상하다/취소하다"],
+  ["recede", "물러나다"], ["receive", "받다"], ["reckon", "계산하다/생각하다"],
+  ["reclaim", "개간하다/되찾다"], ["recognize", "인정하다/알아보다"], ["recollect", "회상하다"],
+  ["recommend", "추천하다"], ["reconcile", "화해시키다"], ["reconstruct", "재구성하다"],
+  ["record", "기록하다"], ["recover", "회복하다"], ["recruit", "모집하다"],
+  ["rectify", "개정하다/수정하다"], ["recycle", "재활용하다"], ["reduce", "줄이다"],
+  ["refer", "참조하다/언급하다"], ["refine", "정제하다/세련되게 하다"], ["reflect", "반영하다/반사하다"],
+  ["reform", "개혁하다"], ["refrain", "삼가다"], ["refresh", "새롭게 하다"],
+  ["refrigerate", "냉각하다"], ["refund", "환불하다"], ["refuse", "거절하다"],
+  ["refute", "반박하다"], ["regard", "간주하다"], ["register", "등록하다"],
+  ["regret", "후회하다"], ["regulate", "규제하다/조절하다"], ["rehabilitate", "재건하다/갱신시키다"],
+  ["rehearse", "예습하다"], ["reign", "통치하다"], ["reinforce", "강화하다"],
+  ["reject", "거절하다"], ["rejoice", "기뻐하다"], ["relate", "관련시키다/이야기하다"],
+  ["relax", "휴식을 취하다"], ["release", "방출하다/석방하다"], ["relieve", "완화하다/안도시키다"],
+  ["rely", "의지하다"], ["remain", "남다"], ["remark", "말하다/주목하다"],
+  ["remember", "기억하다"], ["remind", "상기시키다"], ["reminisce", "추억하다"],
+  ["remit", "송금하다/면제하다"], ["remove", "제거하다"], ["render", "~이 되게 하다/주다"],
+  ["renew", "갱신하다"], ["renounce", "포기하다"], ["renovate", "개조하다/수리하다"],
+  ["rent", "빌리다"], ["repair", "수리하다"], ["repay", "갚다"],
+  ["repeal", "폐지하다"], ["repeat", "반복하다"], ["repel", "쫓아버리다"],
+  ["replace", "대체하다"], ["reply", "대답하다"], ["report", "보고하다"],
+  ["represent", "대표하다/나타내다"], ["repress", "억압하다"], ["reproduce", "복제하다/번식하다"],
+  ["reproach", "비난하다"], ["reprove", "비난하다"], ["request", "요청하다"],
+  ["require", "요구하다"], ["rescue", "구조하다"], ["resemble", "~와 닮다"],
+  ["resent", "분개하다"], ["reserve", "예약하다/보유하다"], ["reshape", "모양을 바꾸다"],
+  ["reside", "거주하다"], ["resign", "사임하다"], ["resist", "저항하다"],
+  ["resolve", "결심하다/해결하다"], ["resort", "의지하다"], ["respect", "존경하다"],
+  ["respond", "응답하다"], ["rest", "쉬다"], ["restore", "복원하다"],
+  ["restrain", "억제하다"], ["restrict", "제한하다"], ["result", "결과로서 생기다"],
+  ["resume", "재개하다"], ["retain", "유지하다"], ["retaliate", "보복하다"],
+  ["retard", "지연시키다"], ["retire", "은퇴하다"], ["retort", "보복하다/말대꾸하다"],
+  ["retrace", "회상하다/되돌아가다"], ["retract", "취소하다/철회하다"], ["retreat", "후퇴하다"],
+  ["retrieve", "되찾다/회복하다"], ["reveal", "드러내다"], ["revenge", "복수하다"],
+  ["revere", "숭배하다"], ["reverse", "뒤집다"], ["revert", "되돌아가다"],
+  ["revise", "개정하다/수정하다"], ["revive", "활성화하다/소생시키다"], ["revoke", "취소하다"],
+  ["revolt", "반란을 일으키다"], ["reward", "보상하다"], ["rid", "제거하다"],
+  ["ride", "타다"], ["ring", "울리다"], ["rise", "오르다"],
+  ["risk", "위험을 무릅쓰다"], ["roam", "배회하다"], ["roar", "으르렁거리다"],
+  ["rob", "강탈하다"], ["rock", "흔들다"], ["roll", "구르다"],
+  ["rot", "부패하다"], ["rotate", "회전하다"], ["rub", "문지르다"],
+  ["ruin", "파괴하다/망치다"], ["rule", "지배하다"], ["run", "달리다/운영하다"],
+  ["rush", "서두르다"], ["sacrifice", "희생하다"], ["sail", "항해하다"],
+  ["satisfy", "만족시키다"], ["save", "저장하다/구하다"], ["say", "말하다"],
+  ["scan", "정밀 검사하다"], ["scare", "겁주다"], ["scatter", "흩뜨리다"],
+  ["schedule", "일정을 잡다"], ["scold", "꾸짖다"], ["score", "득점하다"],
+  ["scorn", "경멸하다"], ["scream", "비명을 지르다"], ["seal", "봉인하다"],
+  ["search", "검색하다/찾다"], ["secure", "확확보하다/안전하게 하다"], ["see", "보다"],
+  ["seek", "추구하다/찾다"], ["seem", "~처럼 보이다"], ["seize", "붙잡다"],
+  ["select", "선택하다"], ["sell", "팔다"], ["send", "보내다"],
+  ["sense", "느끼다"], ["separate", "분리하다"], ["serve", "봉사하다/섬기다"],
+  ["set", "놓다/설정하다"], ["settle", "정착하다/해결하다"], ["sever", "절단하다"],
+  ["sew", "바느질하다"], ["shake", "흔들다"], ["shape", "형성하다"],
+  ["share", "공유하다"], ["shatter", "박살 내다"], ["shave", "면도하다"],
+  ["shed", "흘리다/벗다"], ["shelter", "보호하다"], ["shift", "이동하다/바꾸다"],
+  ["shine", "빛나다"], ["shiver", "떨다"], ["shock", "충격을 주다"],
+  ["shoot", "쏘다"], ["shorten", "짧게 하다"], ["shout", "외치다"],
+  ["show", "보여주다"], ["shrink", "줄어들다"], ["shrug", "어깨를 으쓱하다"],
+  ["shut", "닫다"], ["sigh", "한숨 쉬다"], ["sign", "서명하다"],
+  ["signify", "의미하다/나타내다"], ["simplify", "단순화하다"], ["simulate", "흉내 내다/모의 실험하다"],
+  ["sit", "앉다"], ["sketch", "스케치하다"], ["skip", "건너뛰다"],
+  ["sleep", "자다"], ["slice", "얇게 자다"], ["slide", "미끄러지다"],
+  ["slip", "미끄러지다/실수하다"], ["slow", "느리게 하다"], ["smash", "박살 내다"],
+  ["smell", "냄새 맡다"], ["smile", "미소 짓다"], ["smoke", "담배 피우다"],
+  ["smooth", "매끄럽게 하다"], ["snap", "덥석 물다/부러뜨리다"], ["snatch", "잡아채다"],
+  ["sneeze", "재채기하다"], ["soar", "높이 치솟다"], ["solve", "해결하다"],
+  ["soothe", "진정시키다"], ["sort", "분류하다"], ["sound", "소리 나다"],
+  ["sow", "씨 뿌리다"], ["spare", "아끼다/용서하다"], ["speak", "말하다"],
+  ["specialize", "전공하다/특수화하다"], ["specify", "명기하다"], ["speculate", "추측하다/투기하다"],
+  ["spend", "소비하다"], ["spin", "돌다"], ["split", "쪼개다"],
+  ["spoil", "망치다"], ["sponsor", "후원하다"], ["spread", "퍼뜨리다"],
+  ["spring", "튀어 오르다"], ["sprinkle", "뿌리다"], ["stabilize", "안정시키다"],
+  ["stain", "더럽히다"], ["stamp", "도장을 찍다"], ["stand", "서다/참다"],
+  ["stare", "응시하다"], ["start", "시작하다"], ["state", "진술하다"],
+  ["stay", "머무르다"], ["steal", "훔치다"], ["steer", "조종하다"],
+  ["step", "밟다"], ["stick", "붙이다/고수하다"], ["stimulate", "자극하다"],
+  ["stink", "악취가 나다"], ["stir", "휘젓다/자극하다"], ["stop", "멈추다"],
+  ["store", "저장하다"], ["straighten", "똑바르게 하다"], ["strengthen", "강화하다"],
+  ["stress", "강조하다"], ["stretch", "늘리다"], ["strike", "치다/파업하다"],
+  ["strip", "벗기다"], ["strive", "노력하다"], ["structure", "구조화하다"],
+  ["study", "공부하다"], ["stumble", "비틀거리다"], ["subdue", "진압하다"],
+  ["subject", "복종시키다"], ["submerge", "잠수시키다"], ["submit", "제출하다/굴복하다"],
+  ["subscribe", "구독하다"], ["substitute", "대체하다"], ["subtract", "빼다"],
+  ["succeed", "성공하다/계승하다"], ["suffer", "고통받다"], ["suggest", "제안하다/암시하다"],
+  ["suit", "적합하다"], ["summarize", "요약하다"], ["supervise", "감독하다"],
+  ["supplement", "보충하다"], ["supply", "공급하다"], ["support", "지지하다/부양하다"],
+  ["suppose", "가정하다"], ["suppress", "진압하다/억제하다"], ["surf", "파도타기 하다"],
+  ["surmount", "극복하다"], ["surpass", "능가하다"], ["surprise", "놀라게 하다"],
+  ["surrender", "항복하다"], ["surround", "둘러싸다"], ["survey", "조사하다"],
+  ["survive", "생존하다"], ["suspect", "의심하다"], ["suspend", "매달다/중지하다"],
+  ["sustain", "유지하다/지탱하다"], ["swallow", "삼키다"], ["sway", "흔들리다"],
+  ["swear", "맹세하다/욕하다"], ["sweep", "쓸다"], ["swell", "부풀다"],
+  ["swim", "수영하다"], ["swing", "흔들다"], ["switch", "바꾸다"],
+  ["symbolize", "상징하다"], ["sympathize", "동정하다/공감하다"], ["synthesize", "합성하다"]
+]
