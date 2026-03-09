@@ -88,7 +88,7 @@ if st.session_state.word_dict:
     st.progress(progress)
     st.caption(f"🏆 {selected_tab} 해금률: {progress*100:.1f}% ({unlocked_count}/{total_count})")
 
-tab1, tab2, tab3 = st.tabs(["🎯 퀴즈", "📖 도감", "❌ 오답노트"])
+tab1, tab2, tab3, tab4 = st.tabs(["🎯 퀴즈", "📖 도감", "❌ 오답노트", "⚙️ 설정"])
 
 # --- [Tab 1: 퀴즈] ---
 with tab1:
