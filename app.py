@@ -164,3 +164,42 @@ with tab3:
                     if st.button(f"삭제", key=f"del_{ww}"):
                         st.session_state.wrong_words.remove(ww)
                         st.rerun()
+import json
+
+# [추가] JSON 파일을 읽어서 시트로 전송하는 함수
+def sync_verbs_from_json():
+    try:
+        # 1. JSON 파일 읽기
+        with open('verbs.json', 'r', encoding='utf-8') as f:
+            verbs_payload = json.load(f)
+        
+        # 2. 구글 시트 연결
+        client = init_gspread()
+        spreadsheet = client.open("voka_master")
+        
+        # 3. 'words_verb' 탭 초기화 및 업로드
+        try:
+            worksheet = spreadsheet.worksheet("words_verb")
+            worksheet.clear()
+        except:
+            worksheet = spreadsheet.add_worksheet(title="words_verb", rows="1500", cols="2")
+        
+        worksheet.append_row(["단어", "뜻"])
+        worksheet.append_rows(verbs_payload)
+        return True, len(verbs_payload)
+    except Exception as e:
+        return False, str(e)
+
+# --- [Tab 4: 설정] 화면에 버튼 배치 ---
+with tab4:
+    st.subheader("📦 데이터 동기화")
+    st.info("verbs.json 파일에 있는 단어들을 구글 시트 'words_verb' 탭으로 전송합니다.")
+    
+    if st.button("🚀 JSON 데이터 시트로 전송하기", use_container_width=True):
+        with st.spinner('시트 업데이트 중...'):
+            success, result = sync_verbs_from_json()
+            if success:
+                st.success(f"성공! {result}개의 단어가 업로드되었습니다.")
+                st.balloons()
+            else:
+                st.error(f"오류 발생: {result}")
